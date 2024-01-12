@@ -1,0 +1,307 @@
+<!--<div>
+  <table>
+    <thead>
+    <tr>-->
+<!--<th>Action</th>-->
+<!--      <th>Id</th>
+      <th>Cod </th>
+      <th>Descrição</th>
+      <th>Qtd</th>
+      <th>Preço</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>-->
+<!-- <tr *ngFor="let vendas of listaVendas">-->
+<!-- <tr *ngFor="let vendas of listaItensVd">-->
+<!-- <td><a [routerLink]="['edit', vendas.id]">Edit</a>
+
+   <button class="body" (click)="trash(vendas.id)" *ngIf="vendas.deletedAt == null">T</button>
+   <button class="body" (click)="untrash(vendas.id)" *ngIf="vendas.deletedAt != null">U</button>
+ </td>-->
+<!--      <td>{{ vendas.id_itens_vd}}</td>
+      <td>{{vendas.cod_vendas}}</td>
+      <td>{{ vendas.descricao }}</td>
+      <td>{{vendas.qtd_vendidas}}</td>
+      <td>{{ vendas.valor_venda }}</td>
+      <td>{{vendas.valor_parcial}}</td>-->
+<!--   <td>{{ vendas.createdAt | date:'dd/mm/yyyy' }} </td>
+   <td>{{ vendas.deletedAt | date:'dd/mm/yyyy' }} </td>
+--> <!--</tr>
+    </tbody>
+  </table>
+</div>-->
+
+
+<!--
+
+<div>
+
+  <mat-card class="mat-card-table">
+
+    <mat-toolbar class="head-table body"  >
+
+      <span> Vendas </span>
+      <input class="input-table" type="text" placeholder=" Digite a consulta" matInput
+             [formControl]="vendaControl"
+             (keypress)="changeSales(vendaControl.value)"
+             (keydown)="listarVenda()"/>
+
+      <button class="button-search body"  (click)="listarItensVdEntreDatas()"> Search</button>
+
+    </mat-toolbar>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+
+        <mat-panel-description>
+          Abrir itens   {{panelOpenState ? 'open' : 'closed'}}
+          <mat-icon>shopping</mat-icon>
+        </mat-panel-description>
+            <table mat-table class="button-gradient body" [dataSource]="tbSourceVd$" >
+            <ng-container matColumnDef="data2">
+              <td mat-cell *matCellDef="let element"> {{element.dt_venda}} </td>
+            </ng-container>
+            <tr mat-row *matRowDef=" let row; columns: displayedColumnsVd;"></tr>
+          </table>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open </p>
+
+  <table mat-table class="button-gradient body" [dataSource]="tbSourceItensDaVd$" >
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let element"> {{element.cod_produtos}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="preco">
+      <th mat-header-cell *matHeaderCellDef> Preço </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_venda}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qtd">
+      <th mat-header-cell *matHeaderCellDef> Qtd </th>
+      <td mat-cell  *matCellDef="let element"> {{element.qtd_vendidas}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="soma">
+      <th mat-header-cell *matHeaderCellDef> Soma </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_parcial}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef> Data </th>
+      <td mat-cell *matCellDef="let element"> {{element.dt_venda}} </td>
+    </ng-container>
+    <ng-container matColumnDef="imagem" >
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element" >
+        <img class="image-table"
+       src="/assets/image/lambao.jpg" >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="opicoes">
+      <th mat-header-cell *matHeaderCellDef> Adicionar as compras </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="button-gradient" >
+          <mat-icon type="hidden" title="Editar Item"  class="edit" [routerLink]="['edit']">
+            add_shopping_cart
+          </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="3"></td>
+    </tr>
+
+
+  </table>
+
+    </mat-expansion-panel>
+
+  <mat-paginator [length]="100"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="pageEvent = $event"
+                 aria-label="Select page"
+                 class="button-gradient body"   >
+  </mat-paginator>
+  </mat-card>
+</div>
+
+-->
+
+
+<div>
+<mat-card class="mat-card-table">
+
+  <mat-toolbar class="head-table-vd body"  >
+    <h3> Vendas </h3>
+    <button  class="button-add" (click)="openDilogVd(produtControl.value)" >
+      <mat-icon>add</mat-icon>
+    </button>
+    <input class="input-table-vd" type="text" placeholder=" Digite a consulta" matInput
+           [formControl]="vendaControl"
+           (keypress)="changeSales(vendaControl.value)"
+           (keydown)="listarVenda()"/>
+
+    <button class="button-search body"> Search</button>
+
+  </mat-toolbar>
+  <table mat-table class="mdc-data-table__table body" [dataSource]="tbSourceVd$" multiTemplateDataRows>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsVd"></tr>
+
+    <!--
+        <ng-container class="table-head-data" matColumnDef="{{column}}" *ngFor="let column of displayedColumnsVd">
+          <mat-header-cell  *matHeaderCellDef> {{column}} </mat-header-cell>
+          <mat-cell  *matCellDef="let element"> {{element[column]}} </mat-cell>
+        </ng-container>
+        -->
+
+        <ng-container matColumnDef="nome_cliente">
+          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+          <td mat-cell *matCellDef="let elementVd"> {{elementVd.nome_cliente}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dt_venda">
+          <th mat-header-cell *matHeaderCellDef> Data</th>
+          <td mat-cell *matCellDef="let elementVd"> {{elementVd.dt_venda}} </td>
+        </ng-container>
+
+  <ng-container matColumnDef="total_geral">
+          <th mat-header-cell *matHeaderCellDef> Total</th>
+          <td mat-cell *matCellDef="let elementVd"> {{elementVd.totalgeral}} </td>
+        </ng-container>
+
+       <ng-container matColumnDef="opicao">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon>redeem</mat-icon>
+            <mat-icon>shopping_basket</mat-icon>
+            <mat-icon>shopping_cart</mat-icon>
+            Adicionar itens
+          </th>
+          <td mat-cell *matCellDef="let elementVd">
+            <button class="componet-gradient" (click)="openDilogVd(elementVd)">
+              <mat-icon type="hidden" title="Adicionar mais Item"  class="edit" >
+                add_shopping_cart
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+
+  <!-- Expanded Column -->
+  <ng-container matColumnDef="expandedDetail">
+
+    <th mat-cell *matCellDef="let elemento" [attr.colspan]="displayedColumnsVd.length" >
+      <div class="example-element-detail" [@detailExpand]="elemento.isExpanded ? 'expanded' : 'collapsed'">
+
+        <table mat-table class="body" [dataSource]="tbSourceItensDaVd$" >
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+          <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef> Código </th>
+            <td mat-cell *matCellDef="let element"> {{element.cod_produtos}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+            <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="preco">
+            <th mat-header-cell *matHeaderCellDef> Preço </th>
+            <td mat-cell *matCellDef="let element"> {{element.valor_venda}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="qtd">
+            <th mat-header-cell *matHeaderCellDef> Qtd </th>
+            <td mat-cell  *matCellDef="let element"> {{element.qtd_vendidas}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="soma">
+            <th mat-header-cell *matHeaderCellDef> Soma </th>
+            <td mat-cell *matCellDef="let element"> {{element.valor_parcial}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef> Data </th>
+            <td mat-cell *matCellDef="let element"> {{element.dt_venda}} </td>
+          </ng-container>
+
+           <ng-container matColumnDef="imagem" >
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element" >
+            <img class="image-table"
+                 src="/assets/image/lambao.jpg" >
+          </td>
+        </ng-container>
+
+          <ng-container matColumnDef="opicoes">
+            <th mat-header-cell *matHeaderCellDef> Opições </th>
+            <td mat-cell *matCellDef="let element">
+              <button class="button-update" >
+                <mat-icon type="hidden" title="Editar Item"  class="edit"
+                          (click)="openDilogVd(element)"
+                > <!--  [routerLink]="['edit']" > --> edite </mat-icon>
+              </button>
+              <button class="button-update" title="Remover Item"  >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="3"></td>
+          </tr>
+
+        </table>
+
+        </div>
+    </th>
+  </ng-container>
+
+  <tr mat-row *matRowDef="let boss; columns: displayedColumnsVd;"
+      class="example-element-row"
+      [class.example-expanded-row]="boss.isExpanded"
+      (click)="boss.isExpanded = !boss.isExpanded">
+  </tr>
+
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="3"></td>
+    </tr>
+</table>
+
+
+<mat-paginator [length]="100"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               (page)="pageEvent = $event"
+               aria-label="Select page"
+               class="button-gradient body"   >
+</mat-paginator>
+</mat-card>
+</div>
