@@ -1,0 +1,88 @@
+<div>
+
+    <div>
+
+      <!-- First Photo Grid-->
+      <div class="container-top-dashbord body ">
+
+        <div>
+          <img class="img-magnifier-container"
+               src="/assets/image/catao_black.png" alt="Norway"
+               imgMain name="imgMain" ngModel required #imgMain="ngModel"
+
+               style="width:20%">
+          <p><b>Cartão Black</b></p>
+          <p class="label-descrition">Perfil ilimitado </p>
+        </div>
+
+        <div>
+          <img class="img-magnifier-container"
+               src="/assets/image/catao_plantinum.png" alt="Norway" style="width:20%">
+          <p><b>Cartão Plantinum</b></p>
+          <p class="label-descrition">Perfil acima do comum </p>
+        </div>
+
+        <div>
+          <img class="img-magnifier-container"
+               src="/assets/image/catao_green.png" alt="Norway"
+               imgMain name="imgMain" ngModel required #imgMain="ngModel"
+
+               style="width:20%">
+          <p><b>Cartão Green</b></p>
+          <p class="label-descrition">Perfil moderado </p>
+        </div>
+
+        <div>
+          <img class="img-magnifier-container"
+               src="/assets/image/catao_ouro.png" alt="Norway" style="width:20%">
+          <p><b>Cartão Plantinum</b></p>
+          <p class="label-descrition">Perfil acima do comum </p>
+        </div>
+
+      </div>
+
+      <h4>Technical Skills</h4>
+      <!-- Progress bars / Skills -->
+      <div>
+        <div class="graphic-of-languages body" style="width:95%">95%</div>
+        <p>Java</p>
+      </div>
+
+      <div>
+        <div class="graphic-of-languages body" style="width:85%">85%</div>
+        <p>TypeScript</p>
+      </div>
+
+      <div>
+        <div class="graphic-of-languages body " style="width:80%">80%</div>
+        <p>Web Design</p>
+      </div>
+      <br>
+      <p>
+        <button class="button-sign-up body">
+          <i></i>Download Resume
+        </button>
+      </p>
+      <hr>
+
+    </div>
+
+
+    <mat-grid-list cols="3" rowHeight="100px"  >
+      <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color"
+        class="container-dashbord"
+      >
+        {{tile.text}}
+        <div  >
+        <img class="container-dashbord" src="assets/image/r2_d2.png" alt="Norway">
+        </div>
+         </mat-grid-tile>
+    </mat-grid-list>
+
+
+
+</div>
