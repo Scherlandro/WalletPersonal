@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-/*
+
 
   tiles: Tile[] = [
     {text: 'One', cols: 3, rows: 1, color: '#413968'},
@@ -43,6 +43,6 @@ export class DashboardComponent implements OnInit {
     start: new FormControl(new Date(year, month, 15)),
     end: new FormControl(new Date(year, month, 19)),
   });
-*/
+
 
 }
