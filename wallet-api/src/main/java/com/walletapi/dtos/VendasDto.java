@@ -21,20 +21,22 @@ import java.util.List;
 @NoArgsConstructor
 public class VendasDto {
 
+
     private Integer idVenda;
-    private Integer id_cliente;
+    private Integer idCliente;
     @NotNull
     @NotBlank
     private String nomeCliente;
-    private Integer id_funcionario;
-    private String nome_funcionario;
-    private String dt_venda;
+    private Integer idFuncionario;
+    private String nomeFuncionario;
+    private String dtVenda;
     private Double subtotal;
     private Double desconto;
     private Double totalgeral;
-    private String forma_de_pagamento;
+    private String formasDePagamento;
     @Size(max = 2)
-    private Integer numero_de_parcelas;
+    private Integer qtdDeParcelas;
     private Collection<ItensDaVenda> itensVd;
+
 
 }

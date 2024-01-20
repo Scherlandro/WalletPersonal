@@ -31,8 +31,8 @@ public class VendasServiceImpl implements VendasService {
     }
 
     @Override
-    public Optional<VendasDto> litarVendaPorCliente(String nome_cliente) {
-        return vendasRepository.findVendasByNomeCliente(nome_cliente);
+    public Optional<Vendas> litarVendaPorCliente(String nome_cliente) {
+        return vendasRepository.findVendasByNomeDoCliente(nome_cliente);
     }
 
     @Override

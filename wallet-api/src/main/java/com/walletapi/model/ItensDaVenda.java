@@ -37,10 +37,7 @@ public class ItensDaVenda {
 
 
   /*  (Muitos IntensDaVenda(classeLocal) para Uma Venda(atributo referido)
-     Uma venda pode ter vários itensDeVenda*/
-
-
-   /* @Transient
+     Uma venda pode ter vários itensDeVenda
     @ManyToOne
     @JoinTable(name = "vendas", joinColumns = {
             @JoinColumn(name = "fk_Vd_itensVd", referencedColumnName = "codVenda")},

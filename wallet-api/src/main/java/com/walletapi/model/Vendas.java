@@ -18,23 +18,20 @@ public class Vendas {
     @Column(name = "id_venda")
     private Integer idVenda;
 
- /*   @Column(name = "codevenda", length = 20)
-    private String codevenda;
-*/
-    @Column(length = 11)
-    private Integer id_cliente;
+    @Column(name = "id_cliente", length = 11)
+    private Integer idCliente;
 
-    @Column(name = "nome_cliente",length = 45)
+    @Column(name = "nome_cliente", length = 45)
     private String nomeCliente;
 
-    @Column(length = 11)
-    private Integer id_funcionario;
+    @Column(name = "id_funcionario", length = 11)
+    private Integer idFuncionario;
 
-    @Column(length = 45)
-    private String nome_funcionario;
+    @Column(name = "nome_funcionario", length = 45)
+    private String nomeFuncionario;
 
-    @Column(length = 10)
-    private String dt_venda;
+    @Column(name = "dt_venda", length = 10)
+    private String dtVenda;
 
     private Double subtotal;
 
@@ -42,15 +39,16 @@ public class Vendas {
 
     private Double totalgeral;
 
-    @Column(length = 25)
-    private String forma_de_pagamento;
+    @Column(name = "forma_de_pagamento", length = 25)
+    private String formasDePagamento;
 
-    @Column(length = 3)
-    private Integer numero_de_parcelas;
+    @Column(name = "numero_de_parcelas", length = 3)
+    private Integer qtdDeParcelas;
 
-   @OneToMany
+    @OneToMany
     @JoinColumn(name = "codevendas")
     private Collection<ItensDaVenda> itensVd;
+
 
     /*
 

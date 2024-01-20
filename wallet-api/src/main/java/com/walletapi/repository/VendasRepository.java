@@ -20,16 +20,21 @@ public interface VendasRepository extends JpaRepository<Vendas, Integer> {
 
    */
 
-    /*
-     Optional<VendasDto> findVendasByCodevenda(String codevenda);
-    Optional<VendasDto> findVendasByIdVenda(Integer id);
-    */
+    @Query(value = "Select v.id_venda, " +
+            " v.id_cliente, v.nome_cliente, v.id_funcionario, v.nome_funcionario," +
+            " v.dt_venda, v.subtotal, v.desconto, v.totalgeral," +
+            " v.forma_de_pagamento, v.numero_de_parcelas, i.* " +
+            " from Vendas v join (select it.id_itens_vd," +
+            " it.codevendas, it.cod_produtos,it.descricao, it.valor_compra," +
+            " it.valor_venda, it.valor_parcial, it.qtd_vendidas from ItensDaVenda it) as i " +
+            "on v.id_venda = i.codevendas " +
+            " where v.nome_cliente like ?1% " ,nativeQuery = true )
+    Optional<Vendas> findVendasByNomeDoCliente(@Param("nome_cliente") String nome_cliente);
 
-    @Query("Select new com.walletapi.dtos.VendasDto( v.idVenda, v.id_cliente, v.nomeCliente,  " +
-            " v.id_funcionario, v.nome_funcionario, v.dt_venda," +
-            " v.subtotal, v.desconto, v.totalgeral, v.forma_de_pagamento, v.numero_de_parcelas, v.itensVd)" +
+    @Query("Select new com.walletapi.dtos.VendasDto( v.idVenda, v.idCliente, v.nomeCliente,  " +
+            " v.idFuncionario, v.nomeFuncionario, v.dtVenda," +
+            " v.subtotal, v.desconto, v.totalgeral, v.formasDePagamento, v.qtdDeParcelas, v.itensVd)" +
             "from Vendas v where v.nomeCliente = ?1 ")
-    Optional<VendasDto> findVendasByNomeCliente(@Param("nome_cliente") String nome_cliente);
+    Optional<VendasDto> findVendasByNomeCliente(@Param("nomeCliente") String nomeCliente);
 
-   // Optional<VendasDto> findVendasByNomeCliente(String name);
 }

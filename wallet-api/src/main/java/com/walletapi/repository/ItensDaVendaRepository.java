@@ -13,18 +13,17 @@ import java.util.Optional;
 @Repository
 public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Integer> {
 
-
-   @Query("Select i.descricao, i.cod_produtos, i.qtd_vendidas," +
-            " i.valor_venda, i.valor_parcial, v.dt_venda " +
+    @Query("Select i.descricao, i.cod_produtos, i.qtd_vendidas," +
+            " i.valor_venda, i.valor_parcial, v.dtVenda " +
             "from Vendas v inner join ItensDaVenda i " +
-            "on v.idVenda = i.codevendas and (v.dt_venda) like %?1% ")
+            "on v.idVenda = i.codevendas and (v.dtVenda) like %?1% ")
     Optional<ItensDaVenda> litarItemDaVendaPorData(String dt_venda);
 
     @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos, i.descricao, i.valor_venda," +
-            " i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
+            " i.qtd_vendidas, i.valor_parcial, v.dtVenda )" +
             "from Vendas v inner join ItensDaVenda i " +
             "on v.idVenda = i.codevendas and " +
-            "STR_TO_DATE(v.dt_venda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dataIniti,'%d/%m/%y') AND STR_TO_DATE(:dataFinal,'%d/%m/%y') ")
+            "STR_TO_DATE(v.dtVenda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dataIniti,'%d/%m/%y') AND STR_TO_DATE(:dataFinal,'%d/%m/%y') ")
     List<ItensDaVendaDto> litarItemDaVendaEntreDatas(@Param("dataIniti") String dataIniti , @Param("dataFinal") String dataFinal);
 
 /*
