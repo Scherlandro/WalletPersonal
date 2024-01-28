@@ -26,7 +26,7 @@ export class VendasService {
   }
 
   updateVenda(venda: iVendas): Observable<iVendas>{
-    return this._http.patch<iVendas>(this.baseUrl+'/'+venda.id_venda, venda)
+    return this._http.patch<iVendas>(this.baseUrl+'/'+venda.idVenda, venda)
   }
 
   trashSales(cid:number|undefined): Observable<iVendas>{

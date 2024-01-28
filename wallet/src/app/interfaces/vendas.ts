@@ -1,19 +1,21 @@
+import {iItensVd} from "./itens-vd";
+
 export interface iVendas {
-  id_venda: number,
-  cod_venda: string,
-  id_cliente: number,
-  nome_cliente: string,
-  id_funcionario: number,
-  nome_funcionario: string,
-  dt_venda: string,
+  idVenda: number,
+  idCliente: number,
+  nomeCliente: string,
+  idFuncionario: number,
+  nomeFuncionario: string,
+  dtVenda: string,
   subtotal: string,
   desconto: string,
   totalgeral: string,
-  forma_de_pagamento: string,
-  numero_de_parcelas: number
-    updatedAt?: string,
-    createdAt?: string,
-    deletedAt?: null | string
+  formasDePagamento: string,
+  qtdDeParcelas: number,
+  itensVd: iItensVd
+  /*   updatedAt?: string,
+     createdAt?: string,
+     deletedAt?: null | string*/
 }
 
 export interface ISingleVendas {
