@@ -65,13 +65,18 @@
 }
 
 .button-search {
-  min-width: 80px;
-  width: auto;
+  width: 100%;
+  min-width: 50px;
   height: 35px;
   background-color: rgba(51, 33, 83, 0.07);
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .image-table{
