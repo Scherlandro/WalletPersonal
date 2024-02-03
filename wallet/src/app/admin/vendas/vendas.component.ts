@@ -10,6 +10,7 @@ import {MatSort} from "@angular/material/sort";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogProdutoComponent} from "../../shared/diolog_components/dialog-produto/dialog-produto.component";
+import {DialogOpenSalesComponent} from "../../shared/diolog_components/dialog-open-sales/dialog-open-sales.component";
 
 
 @Component({
@@ -84,7 +85,34 @@ export class VendaComponent implements OnInit {
     }
   }
 
-  openDilogVd(eventVd: any){
+
+  openDilogVd(eventVd: any) {
+
+    const dialogRef = this.dialog.open(DialogOpenSalesComponent, {
+      width: '300px',
+      data: eventVd === null ? {
+        idVenda: null,
+        nomeCliente: '',
+        dtVenda: '',
+        cod_vendas: null,
+        descricao: '',
+        valor_venda: '',
+        qtd_vendidas: ''
+      } : {
+        idVenda: eventVd.idVenda,
+        nomeCliente: eventVd.nomeCliente,
+        dtVenda: eventVd.dtVenda,
+        cod_vendas: eventVd.cod_vendas,
+        descricao: eventVd.descricao,
+        valor_venda: eventVd.valor_venda,
+        qtd_vendidas: eventVd.qtd_vendidas,
+
+      }
+    });
+  }
+
+
+  openDilogItenVd(eventVd: any){
     console.log("Dados do elementoDialog", eventVd)
     const dialogRef = this.dialog.open(DialogProdutoComponent, {
       width: '300px',

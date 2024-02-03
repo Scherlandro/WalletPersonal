@@ -33,6 +33,10 @@ export class ProductService {
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length   */
   }
 
+  getProdutos(valor: string): Observable<any> {
+    return this._http.get(`${this.baseUrl}/'buscarPorNome?nome_produto=${valor}`).pipe(map(res => res));
+  }
+
   searchByName(valor: string): Observable<IProduto[]> {
     return this._http.get<IProduto[]>(this.baseUrl+'buscarPorNome?nome_produto='+valor)
       .pipe(map((resp:IProduto[]) => resp ));

@@ -26,6 +26,7 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSortModule} from "@angular/material/sort";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
  exports: [
@@ -52,7 +53,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
    MatBottomSheetModule,
    MatSortModule,
    MatGridListModule,
-   MatCheckboxModule
+   MatCheckboxModule,
+   FormsModule,
+   ReactiveFormsModule,
  ],
 
 })

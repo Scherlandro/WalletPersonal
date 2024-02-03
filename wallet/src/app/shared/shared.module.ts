@@ -9,6 +9,7 @@ import {DialogClienteComponent} from "./diolog_components/dialog-cliente/dialog-
 import {DialogProdutoComponent} from "./diolog_components/dialog-produto/dialog-produto.component";
 import {DialogUsuarioComponent} from "./diolog_components/dialog-usuario/dialog-usuario.component";
 import {ConfirmDiologComponent} from "./diolog_components/confirm-diolog/confirm-diolog.component";
+import {DialogOpenSalesComponent} from "./diolog_components/dialog-open-sales/dialog-open-sales.component";
 
 
 
@@ -19,7 +20,8 @@ import {ConfirmDiologComponent} from "./diolog_components/confirm-diolog/confirm
     DialogClienteComponent,
     DialogUsuarioComponent,
     DialogLoginComponent,
-    DialogProdutoComponent
+    DialogProdutoComponent,
+    DialogOpenSalesComponent
   ],
   imports: [
     CommonModule,
