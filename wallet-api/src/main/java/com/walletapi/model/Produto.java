@@ -17,62 +17,63 @@ public class Produto implements Serializable {
     private static final long serialversionUID= 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_produto;
+    @Column(name = "id_produto")
+    private Integer idProduto;
 
-    @Column(length = 20)
-    private String cod_produto;
+    @Column(length = 20, name = "cod_produto")
+    private String codProduto;
 
-    @Column(length = 20, name = "coddofabricante")
+    @Column(length = 20, name = "codDofabricante")
     private String codDoFabricante;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-   @Column(length = 10, name = "inicio_cadastro")
-    private String dt_cadastro;
+    @Column(length = 10, name = "inicio_cadastro")
+    private String dtCadastro;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(length = 10, name = "ultima_atualizacao")
-    private String ultima_atualizacao;
+    private String ultimaAtualizacao;
 
-    @Column( length = 60)
-    private String nome_produto;
+    @Column( length = 60, name = "nome_produto")
+    private String nomeProduto;
 
-    @Column(length = 45,name = "cordoproduto")
+    @Column(length = 45,name = "corDoproduto")
     private String corDoProduto;
 
-    @Column(length = 4, name = "unidademedidas")
+    @Column(length = 4, name = "unidadeMedidas")
     private String unidadeMedidas;
 
     @Column(length = 300)
     private String obs;
 
-    @Column( length = 30)
-    private Double valor_compra;
+    @Column( length = 30,name = "valor_compra")
+    private Double valorCompra;
 
     @Column( length = 20)
     private Double percentual;
 
-    @Column( length = 30)
-    private Double valor_venda;
+    @Column( length = 30, name = "valor_venda")
+    private Double valorVenda;
 
-    @Column( length = 11)
-    private Integer quantidade_estoque;
+    @Column( length = 11, name = "quantidade_estoque")
+    private Integer qtdEstoque;
 
-    @Column( length = 11)
-    private Integer estoque_minimo;
+    @Column( length = 11, name = "estoque_minimo")
+    private Integer estoqueMinimo;
 
     @Column(length = 11, name = "qtd_vendidas")
-    private Integer qtd_vendidas;
+    private Integer qtdVendidas;
 
-   @Column(length = 11)
-    private Integer id_fornecedor;
+    @Column(length = 11, name = "id_fornecedor")
+    private Integer idFornecedor;
 
-    @Column(length = 11)
-    private Integer id_marca;
+    @Column(length = 11,name = "id_marca")
+    private Integer idMarca;
 
-    @Column(length = 11)
-    private Integer id_modelo;
+    @Column(length = 11, name = "id_modelo")
+    private Integer idModelo;
 
     @Lob
-    @Column(length = 100000)
-    private byte[] foto_produto;
+    @Column(length = 100000, name = "foto_produto")
+    private byte[] fotoProduto;
 }

@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
-    @Query(value = "select p from Produto p where trim(p.nome_produto) like %?1%")
-    List<Produto> buscarPorNome(String nome);
+    @Query(value = "Select p from Produto p" +
+            " where trim(p.nomeProduto) like ?1%")
+    List<Produto>listarProdutoPorNome(@Param("nomeProduto")String nomeProduto);
+
 }
