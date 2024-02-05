@@ -30,5 +30,4 @@ public class ProdutoDto {
     private Integer iMarca;
     private Integer idModelo;
     private byte[] fotoProduto;
-
 }

@@ -57,9 +57,8 @@ export class DialogOpenSalesComponent {
         }
       );
     }
- /*   this.prodService.getTodosProdutos()
-      .pipe(catchError(error => { this.onError('Erro ao buscar produto.') return of([])
-      }))
+ /*   this.prodService.getTodosProdutos().pipe(catchError(error => {
+      this.onError('Erro ao buscar produto.') return of([]) }))
       .subscribe((rest: IProduto[]) => { this.products = rest  });*/
   }
 

@@ -13,5 +13,4 @@ public interface ProdutoService {
     Optional<Produto> findById(Integer id);
     Boolean existsById(Integer id);
     void delete(Integer id);
-
 }
