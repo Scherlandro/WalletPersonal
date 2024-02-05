@@ -1,8 +1,9 @@
-package com.biontecapi.serviceImpl;
+package com.walletapi.serviceImpl;
 
-import com.biontecapi.model.Produto;
-import com.biontecapi.repository.ProdutoRepository;
-import com.biontecapi.service.ProdutoService;
+
+import com.walletapi.model.Produto;
+import com.walletapi.repository.ProdutoRepository;
+import com.walletapi.service.ProdutoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

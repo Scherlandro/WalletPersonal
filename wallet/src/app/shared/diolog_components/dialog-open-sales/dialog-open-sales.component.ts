@@ -1,14 +1,11 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
-import {IProduto} from "../../../interfaces/product";
+import {iProduto} from "../../../interfaces/product";
 import {ProductService} from "../../../services/product.service";
 import {iVendas} from "../../../interfaces/vendas";
 import {VendasService} from "../../../services/vendas.service";
-import {catchError, map, startWith} from "rxjs/operators";
-import {Observable, of} from "rxjs";
 import {ErrorDiologComponent} from "../error-diolog/error-diolog.component";
-import {each} from "chart.js/dist/helpers";
 
 @Component({
   selector: 'app-dialog-open-sales',
@@ -17,7 +14,7 @@ import {each} from "chart.js/dist/helpers";
 })
 export class DialogOpenSalesComponent {
   isChange!: boolean;
-  prod!: IProduto;
+  prod!: iProduto;
   produtoControl = new FormControl();
   listProd: any;
   produtosFiltered!:string[];
@@ -41,18 +38,13 @@ export class DialogOpenSalesComponent {
     } else {
       this.isChange = false;
     }
-   // this.listarProdutos();
-
-  //  this.produtosFiltered = this.produtoControl.valueChanges.pipe( startWith(''), map(value => value._filter(value) ) )
-
- //   https://v5.material.angular.io/components/autocomplete/examples
   }
 
   listarProdutos(value:any) {
-	     if (this.produtoControl.valid) {
-      this.prodService.getTodosProdutos().subscribe(
+    if (this.produtoControl.valid) {
+      this.prodService.listarProdutoPorNome(value).subscribe(
         (result:any) => {
-          let re = result.map((i:any)=>i.nome_produto.toString());
+          let re = result.map((i:any)=>i.nomeProduto.toString());
           this.products = re;
           this.produtosFiltered = re;
           console.log('lista produtos digitado', re)
@@ -60,7 +52,7 @@ export class DialogOpenSalesComponent {
         },
         error => {
           if (error.status === 404) {
-             this.onError('Erro ao buscar produto.')
+            this.onError('Erro ao buscar produto.')
           }
         }
       );

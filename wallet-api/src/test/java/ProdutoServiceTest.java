@@ -13,6 +13,6 @@ public class ProdutoServiceTest {
     public void setProdServiceTest(){
         //  https://youtu.be/4VmbETu-dcA?t=381
         Produto prod = new Produto();
-        System.out.println(prod.getNome_produto().toString());
+        System.out.println(prod.getNomeProduto().toString());
     }
 }

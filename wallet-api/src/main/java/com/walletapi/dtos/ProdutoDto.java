@@ -1,4 +1,4 @@
-package com.biontecapi.dtos;
+package com.walletapi.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

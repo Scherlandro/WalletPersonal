@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import {ProductService} from "../../services/product.service";
-import {IProduto} from "../../interfaces/product";
+import {iProduto} from "../../interfaces/product";
 import {interval, Observable, of, Subscription, timeout} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {catchError} from "rxjs/operators";
@@ -23,7 +23,7 @@ export class ContabilidadeComponent implements OnInit {
   resultDate: any;
   aSub!: Subscription
   @ViewChild('canvasElement', {static: true}) canvasElement!: ElementRef;
-  restDate= new MatTableDataSource<IProduto>() ;
+  restDate= new MatTableDataSource<iProduto>() ;
   restDtItens: any[]=[];
 
   constructor( private itensVD: ItensVdService,

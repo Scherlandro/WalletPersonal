@@ -1,6 +1,6 @@
-package com.biontecapi.service;
+package com.walletapi.service;
 
-import com.biontecapi.model.Produto;
+import com.walletapi.model.Produto;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,14 +1,13 @@
 import {Component, DEFAULT_CURRENCY_CODE, ElementRef, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import { of} from 'rxjs';
 import {ProductService} from "../../services/product.service";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
-import {catchError, debounceTime, distinctUntilChanged, filter, map, switchMap, tap} from "rxjs/operators";
+import {catchError} from "rxjs/operators";
 import {ErrorDiologComponent} from "../../shared/diolog_components/error-diolog/error-diolog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {FormArray, FormControl, NgForm, Validators} from "@angular/forms";
+import { FormControl} from "@angular/forms";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
-import {Router} from "@angular/router";
-import {IProduto} from "../../interfaces/product";
+import {iProduto} from "../../interfaces/product";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {registerLocaleData} from "@angular/common";
@@ -30,9 +29,9 @@ export class ProductsPComponent implements OnInit {
   pageEvent!: PageEvent;
   displayedColumns: string[] = ['descricao','preco',
     'qtd','imagem','opicoes'];
-  tbSourceProdutos$ = new MatTableDataSource<IProduto>();
-  produtosFiltered: IProduto[] = [];
-  products: IProduto[] = [];
+  tbSourceProdutos$ = new MatTableDataSource<iProduto>();
+  produtosFiltered: iProduto[] = [];
+  products: iProduto[] = [];
   produtoControl = new FormControl();
   searchTerm !:any;
  /*  string;@ViewChild('imgMain') imgMain!: ElementRef;
@@ -60,7 +59,7 @@ export class ProductsPComponent implements OnInit {
       .pipe(catchError(error => {
         this.onError('Erro ao buscar produto.')
         return of([])}))
-      .subscribe(  (rest: IProduto[])=>  {
+      .subscribe(  (rest: iProduto[])=>  {
         this.tbSourceProdutos$.data = rest;
         this.tbSourceProdutos$.paginator = this.paginator;
         // this.produtosFiltered = res;
@@ -73,26 +72,28 @@ export class ProductsPComponent implements OnInit {
       this.prodService.getProdutoPorCod(codProd)
         .pipe(catchError(error => {
           this.onError('Erro ao buscar produto.')
-          return of([]) })).subscribe((result:IProduto[]) => {
+          return of([]) })).subscribe((result:iProduto[]) => {
       this.tbSourceProdutos$.data = result;
           console.log("Retorno da MatTableDat ", result )
     } )
     }
   }
 
+
   consultarPorNome(nomeProd: string){
     if (this.produtoControl.valid) {
-      this.prodService.searchByName(nomeProd)
+      this.prodService.listarProdutoPorNome(nomeProd)
         .pipe(catchError(error => {
           this.onError('Erro ao buscar produto.')
           return of([]) }))
-        .subscribe((result:IProduto[]) => {
+        .subscribe((result:iProduto[]) => {
           this.aplicarFiltro(nomeProd);
           this.tbSourceProdutos$.data = result;
           console.log(result)
         } )
     }
   }
+
 
   aplicarFiltro(valor: string) {
     valor = valor.trim().toLowerCase(); // Remove espaços em branco
@@ -106,8 +107,7 @@ export class ProductsPComponent implements OnInit {
 
   changeProdutos(value: any){
     if (value) {
-      // https://www.youtube.com/watch?v=ZhcYPXLGr_E
-      this.produtosFiltered = this.products.filter(products => products.id_produto.toString()
+      this.produtosFiltered = this.products.filter(products => products.idProduto.toString()
         .includes(value.toUpperCase()));
     } else {
       this.produtosFiltered = this.products;
@@ -128,7 +128,7 @@ export class ProductsPComponent implements OnInit {
 
   onSubmit(valor: string) {
      this.prodService.search(valor).subscribe(
-      (result:IProduto[]) => {  this.tbSourceProdutos$.data = result }
+      (result:iProduto[]) => {  this.tbSourceProdutos$.data = result }
     );
    //  this.prodService.getTodosProdutos().pipe(
    //   map((options) => (options.length == 0 ? true : false))

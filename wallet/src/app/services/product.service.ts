@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs/index";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
-import {IProduto} from "../interfaces/product";
+import {iProduto} from "../interfaces/product";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class ProductService {
   constructor(private _http: HttpClient) {
   }
 
-  getTodosProdutos(): Observable<IProduto[]> {
-    return this._http.get<IProduto[]>(this.baseUrl+'all');
+  getTodosProdutos(): Observable<iProduto[]> {
+    return this._http.get<iProduto[]>(this.baseUrl+'all');
   }
 
   getListarTodos(): Observable<any> {
@@ -33,31 +33,28 @@ export class ProductService {
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length   */
   }
 
+  listarProdutoPorNome(valor: string): Observable<any> {
+    return this._http.get(this.baseUrl+'buscarPorNome?nome_produto='+valor).pipe(map(resp => resp ));
+  }
+
   getProdutos(valor: string): Observable<any> {
-    return this._http.get(`${this.baseUrl}/'buscarPorNome?nome_produto=${valor}`).pipe(map(res => res));
+    return this._http.get(`${this.baseUrl}'buscarPorNome?nome_produto=${valor}`).pipe(map(res => res));
   }
 
-  searchByName(valor: string): Observable<IProduto[]> {
-    return this._http.get<IProduto[]>(this.baseUrl+'buscarPorNome?nome_produto='+valor)
-      .pipe(map((resp:IProduto[]) => resp ));
-    /* this.baseUrl + 'products?name_like=' + valor);   */
+  search(valor: string): Observable<iProduto[]> {
+    return this._http.get<iProduto[]>(this.baseUrl + valor);
   }
 
-
-  search(valor: string): Observable<IProduto[]> {
-    return this._http.get<IProduto[]>(this.baseUrl + valor);
+  createElements(element: iProduto): Observable<iProduto> {
+    return this._http.post<iProduto>(this.baseUrl+'salvar',element);
   }
 
-  createElements(element: IProduto): Observable<IProduto> {
-    return this._http.post<IProduto>(this.baseUrl+'salvar',element);
+  editElement(element: iProduto): Observable<iProduto> {
+    return this._http.put<iProduto>(this.baseUrl+'editar', element);
   }
 
-  editElement(element: IProduto): Observable<IProduto> {
-    return this._http.put<IProduto>(this.baseUrl+'editar', element);
-  }
-
-  delete(id:number):Observable<IProduto>{
-   return  this._http.delete<IProduto>(this.baseUrl+'delete/'+id);
+  delete(id:number):Observable<iProduto>{
+   return  this._http.delete<iProduto>(this.baseUrl+'delete/'+id);
   }
 }
   /*

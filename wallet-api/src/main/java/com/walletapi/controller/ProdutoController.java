@@ -1,24 +1,28 @@
     package com.walletapi.controller;
 
+    import com.walletapi.dtos.ProdutoDto;
     import com.walletapi.model.Produto;
-    import com.walletapi.repository.ProdutoRepository;
+    import com.walletapi.service.ProdutoService;
+    import org.modelmapper.ModelMapper;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
-    import java.util.Arrays;
     import java.util.List;
+    import java.util.Optional;
+    import java.util.stream.Collectors;
 
     @CrossOrigin(origins = "*")
     @RestController
     @RequestMapping("/api/produtos")
     public class ProdutoController {
 
-        @Autowired
-        private ProdutoService prod_serv;
+
         @Autowired
         private ModelMapper mapper;
+        @Autowired
+        private ProdutoService prod_serv;
 
         // @PreAuthorize("hasRole('ADMIN')")
         @GetMapping(path = "/all")

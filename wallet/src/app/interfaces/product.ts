@@ -1,16 +1,23 @@
-export interface IProduto {
+export interface iProduto {
 
-  id_produto: number;
-  cod_produto: string;
-  nome_produto: string;
-  valor_compra: number;
-  percentual: number;
-  valor_venda: number;
-  quantidade_estoque: number;
-  dt_cadastro: string;
-  qtd_vendidas: number;
+  idProduto: number,
+  codProduto: string;
+  codDoFabricante: number
+  dtCadastro: string;
+  ultimaAtualizacao: string;
+  nomeProduto: string;
+  corDoProduto?: number
+  unidadeMedidas?: number
+  obs: string;
+  valorCompra: number
+  percentual: number
+  valorVenda: number
+  qtdEstoque: number
+  estoqueMinimo?: number
+  qtdVendidas?: number
+  idFornecedor?: number
+  idModelo?: number
   imagen_prod: any;
-
 
 }
 /*

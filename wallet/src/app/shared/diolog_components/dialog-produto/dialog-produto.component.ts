@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {IProduto} from "../../../interfaces/product";
+import {iProduto} from "../../../interfaces/product";
 import {ProductService} from "../../../services/product.service";
 
 @Component({
@@ -13,14 +13,14 @@ export class DialogProdutoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public iProduto: IProduto,
+    public iproduto: iProduto,
     public dialogRef: MatDialogRef<DialogProdutoComponent>,
     public productServices: ProductService
   ) {}
 
 
   ngOnInit(): void {
-    if (this.iProduto.id_produto != null) {
+    if (this.iproduto.idProduto != null) {
       this.isChange = true;
     } else {
       this.isChange = false;
@@ -33,7 +33,7 @@ export class DialogProdutoComponent implements OnInit {
   }
 
   save():void{
-    this.productServices.createElements(this.iProduto);
+    this.productServices.createElements(this.iproduto);
   }
 
   formatter(value: number): string {
