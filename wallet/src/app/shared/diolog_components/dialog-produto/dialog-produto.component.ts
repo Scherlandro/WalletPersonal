@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {IProduto} from "../../../interfaces/product";
+import {iProduto} from "../../../interfaces/product";
 import {ProductService} from "../../../services/product.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class DialogProdutoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public iProduto: IProduto,
+    public iProduto: iProduto,
     public dialogRef: MatDialogRef<DialogProdutoComponent>,
     public productServices: ProductService
   ) {}

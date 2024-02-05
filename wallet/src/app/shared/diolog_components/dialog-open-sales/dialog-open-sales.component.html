@@ -24,8 +24,8 @@
            matInput
            [formControl]="produtoControl"
            [matAutocomplete]="auto"
-           (keydown)="changeProdutos(produtoControl.value)">
-          <!-- (keydown)="listarProdutos(produtoControl.value)">-->
+           (keyup)="changeProdutos(produtoControl.value)"
+           (keydown)="listarProdutos(produtoControl.value)">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option [value]="prods" *ngFor="let prods of produtosFiltered">{{prods}}</mat-option>
     </mat-autocomplete>
