@@ -37,7 +37,7 @@ export class DialogProdutoComponent implements OnInit {
   }
 
   formatter(value: number): string {
-    //<div>{{ formatter(iProdroduto.valor_venda) }}</div>
+    //<div>{{ formatter(iprodroduto.valorVenda) }}</div>
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
   }
 

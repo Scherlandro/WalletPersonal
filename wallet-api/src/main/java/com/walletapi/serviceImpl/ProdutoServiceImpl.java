@@ -1,6 +1,5 @@
 package com.walletapi.serviceImpl;
 
-
 import com.walletapi.model.Produto;
 import com.walletapi.repository.ProdutoRepository;
 import com.walletapi.service.ProdutoService;
@@ -42,6 +41,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     public Optional<Produto> findById(Integer id) {
         return produtoRepository.findById(id);
     }
+
     @Override
     public Boolean existsById(Integer id) {
         return produtoRepository.existsById(id);

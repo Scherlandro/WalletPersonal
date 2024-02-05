@@ -18,7 +18,6 @@
     @RequestMapping("/api/produtos")
     public class ProdutoController {
 
-
         @Autowired
         private ModelMapper mapper;
         @Autowired
@@ -66,7 +65,6 @@
             if (!prod_serv.existsById(idprod)) {
                 return ResponseEntity.notFound().build();
             }
-            // produto.setId_produto(idprod);
             prod_serv.save(mapper.map(produtoDto, Produto.class));
             Optional <Produto> prodOptional = prod_serv.findById(produtoDto.getIdProduto());
             return ResponseEntity.ok(prodOptional.map(
