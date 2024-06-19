@@ -26,13 +26,11 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto save(Produto produto) {
-
         return produtoRepository.save(produto);
     }
 
     @Override
     public Optional<Produto> litarProdutoPorCod(Integer id) {
-
         return Optional.empty();
     }
 

@@ -11,6 +11,9 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogProdutoComponent} from "../../shared/diolog_components/dialog-produto/dialog-produto.component";
 import {DialogOpenSalesComponent} from "../../shared/diolog_components/dialog-open-sales/dialog-open-sales.component";
+import {catchError} from "rxjs/operators";
+import {of} from "rxjs";
+import {ErrorDiologComponent} from "../../shared/diolog_components/error-diolog/error-diolog.component";
 
 
 @Component({
@@ -63,12 +66,27 @@ export class VendaComponent implements OnInit {
     });
   }
 
+  consultarPorCliente(nome: string) {
+    if (this.vendaControl.valid) {
+      this.vendasService.listarVdPorCliente(nome)
+        .pipe(catchError(error => {
+          this.onError('Erro ao buscar Cliente!')
+          return of([])
+        }))
+        .subscribe((result: iVendas[]) => {
+          this.aplicarFiltro(nome);
+          this.tbSourceVd$.data = result;
+        })
+    }
+  }
+
   listarItensVdEntreDatas(){
     this.itensDaVdService.getItensVdEntreDatas('06/04/2020', '13/04/2020')
       .subscribe(   (data: iItensVd[]) => {
      // this.tbSourceItensDaVd$.data = data;
     });
   }
+
   listarItensPorCodVenda(){
     this.itensDaVdService.listarItensVdPorCodVenda('1')
       .subscribe(   (data: iItensVd[]) => {
@@ -85,6 +103,16 @@ export class VendaComponent implements OnInit {
     }
   }
 
+  aplicarFiltro(valor: string) {
+    valor = valor.trim().toLowerCase();
+    this.tbSourceVd$.filter = valor;
+  }
+
+  onError(errrorMsg: string) {
+    this.dialog.open(ErrorDiologComponent, {
+      data: errrorMsg
+    });
+  }
 
   openDilogVd(eventVd: any) {
 

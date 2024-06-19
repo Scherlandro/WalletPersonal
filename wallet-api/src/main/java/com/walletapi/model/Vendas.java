@@ -50,15 +50,5 @@ public class Vendas {
     private Collection<ItensDaVenda> itensVd;
 
 
-    /*
-
-   @Transient
-   @OneToMany(mappedBy = "vendas", cascade = CascadeType.ALL, orphanRemoval = true)
-      @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-      @JoinTable(name = "vendas", joinColumns = {
-      @JoinColumn(name = "fk_Vd_itensVd", referencedColumnName = "cod_venda")},
-     inverseJoinColumns = { @JoinColumn(name = "cod_vendas", referencedColumnName = "codevendas")})
-      private final List<ItensDaVenda> itensDaVendaList;
-    }*/
 }
 

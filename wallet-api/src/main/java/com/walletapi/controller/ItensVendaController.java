@@ -45,9 +45,12 @@ public class ItensVendaController {
     @GetMapping(value = "/ItensVdEntreDatas")
     public ResponseEntity ConsultarItensVdEntreDatas(
             @RequestParam(name = "dtIni") String dtIni, @RequestParam(name = "dtFinal")String dtFinal) {
-             return ResponseEntity.ok(itensDaVendaService.ConsultarItensVdEntreDatas(dtIni,dtFinal));
-
-
+           //  return ResponseEntity.ok(itensDaVendaService.ConsultarItensVdEntreDatas(dtIni,dtFinal));
+        List <ItensDaVendaDto> list =  itensDaVendaService.ConsultarItensVdEntreDatas(dtIni,dtFinal);
+        System.out.println(list);
+        return ResponseEntity.ok(list.stream().map(
+           e -> mapper.map(e, ItensDaVendaDto.class))
+           .collect(Collectors.toList()));
     }
 
 }

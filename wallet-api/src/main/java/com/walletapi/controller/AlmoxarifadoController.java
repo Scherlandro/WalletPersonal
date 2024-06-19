@@ -4,7 +4,6 @@ package com.walletapi.controller;
 import com.walletapi.dtos.AlmoxarifadoDto;
 import com.walletapi.model.Almoxarifado;
 import com.walletapi.service.AlmoxarifadoService;
-import lombok.var;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

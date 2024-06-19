@@ -33,7 +33,31 @@ public class Funcionario {
     private String dt_admissao;
 
     @Column(nullable = false, length = 10)
-    private String dt_demisao;
+    private String dt_demissao;
+
+    @Column(length = 45)
+    private String cargo ;
+
+    @Column( length = 10)
+    private Double salario;
+
+    @Column(length = 25)
+    private String tipo_logradouro;
+
+    @Column( length = 65)
+    private String logradouro;
+
+    @Column(length = 10)
+    private Integer n_residencial;
+
+    @Column(nullable = false, length = 10)
+    private String complemento;
+
+    @Column(nullable = false, length = 65)
+    private String bairro;
+
+  @Column(nullable = false, length = 65)
+    private String cidade;
 
     @Column(nullable = false, length = 20)
     private String cep = new Endereco().getCep();
@@ -47,5 +71,10 @@ public class Funcionario {
     @Column(nullable = false, length = 30)
     private String zap;
 
+    @Column(nullable = false, length = 65)
+    private String email;
+
+    @Column( length = 200)
+    private String obs ;
 
 }

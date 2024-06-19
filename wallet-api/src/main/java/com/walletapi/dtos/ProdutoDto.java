@@ -27,7 +27,7 @@ public class ProdutoDto {
     private Integer estoqueMinimo;
     private Integer qtdVendidas;
     private Integer idFornecedor;
-    private Integer iMarca;
+    private Integer idMarca;
     private Integer idModelo;
     private byte[] fotoProduto;
 }

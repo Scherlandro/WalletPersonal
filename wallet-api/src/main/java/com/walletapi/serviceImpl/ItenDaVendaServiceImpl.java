@@ -14,10 +14,14 @@ import java.util.Optional;
 public class ItenDaVendaServiceImpl implements ItensDaVendaService {
 
 
-    final ItensDaVendaRepository itensDaVendaRepository;
+    ItensDaVendaRepository itensDaVendaRepository;
 
     public ItenDaVendaServiceImpl(ItensDaVendaRepository repository) {
         this.itensDaVendaRepository = repository;
+    }
+
+    public ItenDaVendaServiceImpl() {
+
     }
 
     @Transactional

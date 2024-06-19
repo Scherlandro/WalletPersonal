@@ -11,7 +11,8 @@
     <input class="input-table-vd" type="text" placeholder=" Digite a consulta" matInput
            [formControl]="vendaControl"
            (keypress)="changeSales(vendaControl.value)"
-           (keydown)="listarVenda()"/>
+           (keydown)="listarVenda()"
+           (ngModelChange)="consultarPorCliente(vendaControl.value)"   />
 
     <button class="button-search-vd body"> Search</button>
 

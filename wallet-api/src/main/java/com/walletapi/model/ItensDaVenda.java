@@ -36,12 +36,4 @@ public class ItensDaVenda {
     private Integer qtd_vendidas;
 
 
-  /*  (Muitos IntensDaVenda(classeLocal) para Uma Venda(atributo referido)
-     Uma venda pode ter vários itensDeVenda
-    @ManyToOne
-    @JoinTable(name = "vendas", joinColumns = {
-            @JoinColumn(name = "fk_Vd_itensVd", referencedColumnName = "codVenda")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "codVendas", referencedColumnName = "codVendas")})
-    private Vendas venda ;*/
 }

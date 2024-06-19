@@ -23,8 +23,8 @@ public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Inte
             " i.qtd_vendidas, i.valor_parcial, v.dtVenda )" +
             "from Vendas v inner join ItensDaVenda i " +
             "on v.idVenda = i.codevendas and " +
-            "STR_TO_DATE(v.dtVenda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dataIniti,'%d/%m/%y') AND STR_TO_DATE(:dataFinal,'%d/%m/%y') ")
-    List<ItensDaVendaDto> litarItemDaVendaEntreDatas(@Param("dataIniti") String dataIniti , @Param("dataFinal") String dataFinal);
+            "STR_TO_DATE(v.dtVenda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dtIni,'%d/%m/%y') AND STR_TO_DATE(:dtFinal,'%d/%m/%y') ")
+    List<ItensDaVendaDto> litarItemDaVendaEntreDatas(@Param("dtIni") String dtIni , @Param("dtFinal") String dtFinal);
 
 /*
 

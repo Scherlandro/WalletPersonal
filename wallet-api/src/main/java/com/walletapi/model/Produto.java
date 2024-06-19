@@ -76,4 +76,5 @@ public class Produto implements Serializable {
     @Lob
     @Column(length = 100000, name = "foto_produto")
     private byte[] fotoProduto;
+
 }
