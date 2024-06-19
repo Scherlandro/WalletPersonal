@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { iVendas, IDataVendas, ISingleVendas } from '../interfaces/vendas';
 import {environment} from "../../environments/environment";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class VendasService {
 
   getAllSales(): Observable<iVendas[]>{
     return this._http.get<iVendas[]>(this.baseUrl + 'all')
+  }
+
+  listarVdPorCliente(valor: string): Observable<any> {
+    return this._http.get(this.baseUrl+'buscarVdPorCliente?nomeCliente='+valor).pipe(map(resp => resp ));
   }
 
   getVendaPorCod(cod: string | null): Observable<iVendas>{

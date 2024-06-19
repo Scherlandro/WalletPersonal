@@ -36,11 +36,14 @@ public class VendasController {
                 .orElse(ResponseEntity.notFound().build()));
     }
 
-   @GetMapping(path = "/listVendas/{nomeCliente}")
-    public ResponseEntity listarVendasPorCliente(@PathVariable(name ="nomeCliente") String nomeCliente) {
+   @GetMapping(path = "/buscarVdPorCliente")
+    public ResponseEntity listarVendasPorCliente(@RequestParam(name ="nomeCliente") String nomeCliente) {
         Optional<Vendas> vendas = vendas_serv.litarVendaPorCliente(nomeCliente);
+      // return ResponseEntity.ok(vendas.stream().map(
         return ResponseEntity.ok(vendas.map(
-                e -> mapper.map(e,VendasDto.class)).map(r->ResponseEntity.ok().body(r))
+                e -> mapper.map(e,VendasDto.class))
+               // .collect(Collectors.toList()));
+                .map(r->ResponseEntity.ok().body(r))
                 .orElse(ResponseEntity.notFound().build()));
     }
 
