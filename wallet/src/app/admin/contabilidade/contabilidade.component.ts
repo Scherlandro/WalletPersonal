@@ -43,6 +43,7 @@ export class ContabilidadeComponent implements OnInit {
     let dtFin = this.date_finish.split('-').reverse().join('/');
     this.itensVD.getItensVdEntreDatas(dtInt, dtFin)
       .subscribe(  (data: iItensVd[]) => {
+        console.log(data);
         this.restDtItens = data;
       });
   }

@@ -50,14 +50,12 @@ public class ItensVendaController {
     }
 
     @GetMapping(value = "/ItensVdEntreDatas")
-    public ResponseEntity ConsultarItensVdEntreDatas(
+    public ResponseEntity<List<ItensDaVendaDto>> ConsultarItensVdEntreDatas(
             @RequestParam(name = "dtIni") String dtIni, @RequestParam(name = "dtFinal") String dtFinal) {
               List<ItensDaVendaDto> list = itensDaVendaService.ConsultarItensVdEntreDatas(dtIni, dtFinal);
         return ResponseEntity.ok(list.stream().map(
                 e -> mapper.map(e, ItensDaVendaDto.class))
-                .map(r -> ResponseEntity.ok().body(r))
-              //  .orElse(ResponseEntity.notFound().build()));
-          .collect(Collectors.toList()));
+                .collect(Collectors.toList()));
     }
 
 
