@@ -18,6 +18,9 @@ public class Vendas {
     @Column(name = "id_venda")
     private Integer idVenda;
 
+    @Column(name = "codevenda", length = 20)
+    private String codevenda;
+
     @Column(name = "id_cliente", length = 11)
     private Integer idCliente;
 
@@ -31,7 +34,7 @@ public class Vendas {
     private String nomeFuncionario;
 
     @Column(name = "dt_venda", length = 10)
-    private String dtVenda;
+    private String dt_venda;
 
     private Double subtotal;
 

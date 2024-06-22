@@ -14,17 +14,33 @@ import java.util.Optional;
 public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Integer> {
 
     @Query("Select i.descricao, i.cod_produtos, i.qtd_vendidas," +
-            " i.valor_venda, i.valor_parcial, v.dtVenda " +
+            " i.valor_venda, i.valor_parcial, v.dt_venda " +
             "from Vendas v inner join ItensDaVenda i " +
-            "on v.idVenda = i.codevendas and (v.dtVenda) like %?1% ")
+            "on i.codevendas =  i.codevendas and (v.dt_venda) like %?1% ")
     Optional<ItensDaVenda> litarItemDaVendaPorData(String dt_venda);
 
-    @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos, i.descricao, i.valor_venda," +
-            " i.qtd_vendidas, i.valor_parcial, v.dtVenda )" +
+
+    @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
             "from Vendas v inner join ItensDaVenda i " +
-            "on v.idVenda = i.codevendas and " +
-            "STR_TO_DATE(v.dtVenda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dtIni,'%d/%m/%y') AND STR_TO_DATE(:dtFinal,'%d/%m/%y') ")
-    List<ItensDaVendaDto> litarItemDaVendaEntreDatas(@Param("dtIni") String dtIni , @Param("dtFinal") String dtFinal);
+            "on v.codevenda = i.codevendas and " +
+            "STR_TO_DATE(v.dt_venda,'%d/%m/%y')  BETWEEN STR_TO_DATE(:dtIni,'%d/%m/%y') AND STR_TO_DATE(:dtFinal,'%d/%m/%y') ")
+    List<ItensDaVendaDto> litarItemDaVendaEntreData(@Param("dtIni") String dtIni, @Param("dtFinal") String dtFinal);
+
+
+    @Query("Select i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda " +
+            " from Vendas v inner join ItensDaVenda i " +
+            " where v.dt_venda between :dtIni and :dtFinal ")
+    List<ItensDaVenda> litarItemDaVendaEntreData2(@Param("dtIni") String dtIni, @Param("dtFinal") String dtFinal);
+
+
+    @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
+            "from Vendas v inner join ItensDaVenda i " +
+            "on v.codevenda = i.codevendas and v.nomeCliente = ?1")
+    List<ItensDaVendaDto> litarItemDaVendaPorCliente(@Param("nomeCliente") String nomeCliente);
+
 
 /*
 
@@ -34,26 +50,31 @@ public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Inte
          "on v.codevenda = i.codevendas where i.codevendas = ?1 ")
  List<ItensDaVendaDto> litarItemDaVendaPorCod(@Param("codevendas")String codevendas);
 
-*/
 
-  /*  @Query("SELECT offer FROM OfferEntity offer " +
+ @Query("Select i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda " +
+            " from Vendas v inner join ItensDaVenda i " +
+            " where v.dt_venda between :dtIni and :dtFinal ")
+    Collection<ItensDaVenda> litItensVdByDatesBetween(@Param("dtIni") Instant dtIni , @Param("dtFinal") Instant dtFinal);
+
+  @Query("SELECT offer FROM OfferEntity offer " +
             "   JOIN offer.placeOwnership AS owner " +
             "   JOIN owner.place AS place " +
-            "WHERE " +
-            "   place.id = :placeId AND " +
-            "   to_char(offer.dayFrom, 'yyyy-MM-dd') = :offerDate AND " +
-            ^
+            "   WHERE place.id = :placeId  " +
+            "   And to_char(offer.dayFrom, 'yyyy-MM-dd') = :offerDate AND " +
+
             <expression>,<operator>, GROUP, HAVING or ORDER expected got '('
             "   offer.repeating = false")
-    List<OfferEntity> getAllForDate(@Param("placeId") Long placeId, @Param("offerDate") String offerDate);*/
+    List<OfferEntity> getAllForDate(@Param("placeId") Long placeId, @Param("offerDate") String offerDate);
 
-/*
+
+
 
     @Query("UPDATE ItensDaVenda i SET i.cod_produtos = :cod_produto")
     @Modifying
     void addPrefixToFirstName(@Param("cod_produto") String cod_produto);
 
-*/
+ */
 
 
 }

@@ -59,7 +59,8 @@ public class AlmoxarifadoController {
         }
          */
 
-        var almoxarifadoModel = new Almoxarifado();
+       // var almoxarifadoModel = new Almoxarifado();
+        Almoxarifado almoxarifadoModel = new Almoxarifado();
         BeanUtils.copyProperties(almoxarifadoDto, almoxarifadoModel);
         almoxarifadoModel.setDt_saida(LocalDateTime.now(ZoneId.of("UTC")));
         almoxarifadoModel.setDt_entrada(LocalDateTime.now(ZoneId.of("UTC")));
@@ -74,7 +75,8 @@ public class AlmoxarifadoController {
         if(!almoxarifadoModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
         }
-        var almoxarifadoModel = new Almoxarifado();
+        // var almoxarifadoModel = new Almoxarifado();
+        Almoxarifado almoxarifadoModel = new Almoxarifado();
         BeanUtils.copyProperties(almoxarifadoDto, almoxarifadoModel);
         almoxarifadoModel.setId_store(almoxarifadoModelOptional.get().getId_store());
         almoxarifadoModel.setDt_saida(LocalDateTime.now(ZoneId.of("UTC")));

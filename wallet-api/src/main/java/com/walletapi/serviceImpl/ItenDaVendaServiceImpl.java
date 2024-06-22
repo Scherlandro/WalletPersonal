@@ -7,6 +7,7 @@ import com.walletapi.service.ItensDaVendaService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,15 +15,13 @@ import java.util.Optional;
 public class ItenDaVendaServiceImpl implements ItensDaVendaService {
 
 
-    ItensDaVendaRepository itensDaVendaRepository;
+   final ItensDaVendaRepository itensDaVendaRepository;
 
     public ItenDaVendaServiceImpl(ItensDaVendaRepository repository) {
+
         this.itensDaVendaRepository = repository;
     }
 
-    public ItenDaVendaServiceImpl() {
-
-    }
 
     @Transactional
     public ItensDaVenda save(ItensDaVenda itensDaVenda) {
@@ -41,7 +40,7 @@ public class ItenDaVendaServiceImpl implements ItensDaVendaService {
 
     @Override
     public List<ItensDaVendaDto> ConsultarItensVdEntreDatas(String dtIni, String dtFinal) {
-        return itensDaVendaRepository.litarItemDaVendaEntreDatas(dtIni, dtFinal);
+        return itensDaVendaRepository.litarItemDaVendaEntreData(dtIni, dtFinal);
     }
 
     @Override
@@ -49,5 +48,9 @@ public class ItenDaVendaServiceImpl implements ItensDaVendaService {
         return itensDaVendaRepository.litarItemDaVendaPorData(dt);
     }
 
+ @Override
+    public List<ItensDaVendaDto> litarItemDaVendaPorCliente(String nome) {
+        return itensDaVendaRepository.litarItemDaVendaPorCliente(nome);
+    }
 
 }
