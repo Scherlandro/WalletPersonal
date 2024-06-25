@@ -21,10 +21,5 @@ public interface VendasRepository extends JpaRepository<Vendas, Integer> {
     List<Vendas> findVendasByNomeDoCliente(@Param("nome_cliente") String nome_cliente);
 
 
-    @Query("Select new com.walletapi.dtos.VendasDto( v.idVenda, v.idCliente, v.nomeCliente,  " +
-            " v.idFuncionario, v.nomeFuncionario, v.dt_venda," +
-            " v.subtotal, v.desconto, v.totalgeral, v.formasDePagamento, v.qtdDeParcelas, v.itensVd)" +
-            "from Vendas v where v.nomeCliente = ?1 ")
-    List<Vendas> findVendasByNomeCliente(@Param("nomeCliente") String nomeCliente);
 
 }
