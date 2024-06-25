@@ -1,13 +1,13 @@
 package com.walletapi.serviceImpl;
 
-import com.walletapi.dtos.VendasDto;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.walletapi.model.Vendas;
 import com.walletapi.repository.VendasRepository;
 import com.walletapi.service.VendasService;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VendasServiceImpl implements VendasService {
@@ -31,7 +31,7 @@ public class VendasServiceImpl implements VendasService {
     }
 
     @Override
-    public Optional<Vendas> litarVendaPorCliente(String nome_cliente) {
+    public List<Vendas> litarVendaPorCliente(String nome_cliente) {
         return vendasRepository.findVendasByNomeDoCliente(nome_cliente);
     }
 

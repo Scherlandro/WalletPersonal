@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { iVendas, IDataVendas, ISingleVendas } from '../interfaces/vendas';
-import {environment} from "../../environments/environment";
-import {map} from "rxjs/operators";
+import { map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { iVendas } from '../interfaces/vendas';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ export class VendasService {
   }
 
   listarVdPorCliente(valor: string): Observable<any> {
-    return this._http.get(this.baseUrl+'buscarVdPorCliente?nomeCliente='+valor).pipe(map(resp => resp ));
+    return this._http.get(this.baseUrl+'buscarVdPorCliente?nomeCliente='+valor)
+    .pipe(map(resp => resp ));
   }
 
   getVendaPorCod(cod: string | null): Observable<iVendas>{

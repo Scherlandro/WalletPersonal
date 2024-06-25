@@ -16,7 +16,7 @@ public interface ItensDaVendaService {
 
     List<ItensDaVendaDto> ConsultarItensVdEntreDatas(String dtIni, String dtFinal);
 
-     Optional<ItensDaVenda> litarItemDaVendaPorData(String dt);
+     List<ItensDaVendaDto> litarItemDaVendaPorData(String dt);
 
      List<ItensDaVendaDto> litarItemDaVendaPorCliente(String nome);
 

@@ -1,9 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs/index";
-import {environment} from "../../environments/environment";
-import {map} from "rxjs/operators";
-import {iProduto} from "../interfaces/product";
+import { Observable } from "rxjs/index";
+import { map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { iProduto } from "../interfaces/product";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
   }
 
   listarProdutoPorNome(valor: string): Observable<any> {
-    return this._http.get(this.baseUrl+'buscarPorNome?nome_produto='+valor).pipe(map(resp => resp ));
+    return this._http.get(this.baseUrl+'buscarPorNome?nome_produto='+valor)
+    .pipe(map(resp => resp ));
   }
 
   getProdutos(valor: string): Observable<any> {

@@ -1,16 +1,25 @@
 package com.walletapi.controller;
 
-import com.walletapi.dtos.VendasDto;
-import com.walletapi.model.Vendas;
-import com.walletapi.service.VendasService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.walletapi.dtos.VendasDto;
+import com.walletapi.model.Vendas;
+import com.walletapi.service.VendasService;
 
 @RestController
 @RequestMapping(path = "/api/vendas")
@@ -37,14 +46,14 @@ public class VendasController {
     }
 
    @GetMapping(path = "/buscarVdPorCliente")
-    public ResponseEntity listarVendasPorCliente(@RequestParam(name ="nomeCliente") String nomeCliente) {
-        Optional<Vendas> vendas = vendas_serv.litarVendaPorCliente(nomeCliente);
+    public ResponseEntity<List<VendasDto>> listarVendasPorCliente(@RequestParam(name ="nomeCliente") String nomeCliente) {
+        List<Vendas> vendas = vendas_serv.litarVendaPorCliente(nomeCliente);
       // return ResponseEntity.ok(vendas.stream().map(
-        return ResponseEntity.ok(vendas.map(
+        return ResponseEntity.ok(vendas.stream().map(
                 e -> mapper.map(e,VendasDto.class))
-               // .collect(Collectors.toList()));
-                .map(r->ResponseEntity.ok().body(r))
-                .orElse(ResponseEntity.notFound().build()));
+               .collect(Collectors.toList()));
+              //  .map(r->ResponseEntity.ok().body(r))
+               // .orElse(ResponseEntity.notFound().build()));
     }
 
 

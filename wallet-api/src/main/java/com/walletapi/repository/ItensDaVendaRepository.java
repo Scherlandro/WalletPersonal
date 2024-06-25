@@ -13,11 +13,11 @@ import java.util.Optional;
 @Repository
 public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Integer> {
 
-    @Query("Select i.descricao, i.cod_produtos, i.qtd_vendidas," +
-            " i.valor_venda, i.valor_parcial, v.dt_venda " +
+    @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
             "from Vendas v inner join ItensDaVenda i " +
-            "on i.codevendas =  i.codevendas and (v.dt_venda) like %?1% ")
-    Optional<ItensDaVenda> litarItemDaVendaPorData(String dt_venda);
+            "on v.codevenda =  i.codevendas and v.dt_venda like %?1% ")
+    List<ItensDaVendaDto> litarItemDaVendaPorData(@Param("dt_venda") String dt_venda);
 
 
     @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +

@@ -36,17 +36,18 @@ public class ItensVendaController {
 
     @GetMapping(value = "/buscarPorCliente")
     public ResponseEntity<List<ItensDaVendaDto>> ConsultarItensVdPorCliente(@RequestParam(name = "nome") String nome) {
-        return ResponseEntity.ok(itensDaVendaService.litarItemDaVendaPorCliente(nome));
-        /*    return ResponseEntity.ok(list.stream().map(
-                rec -> mapper.map(rec , ItensDaVendaDto.class))
-                    .collect(Collectors.toList()));*/
+        List<ItensDaVendaDto> list = itensDaVendaService.litarItemDaVendaPorCliente(nome);
+        return ResponseEntity.ok(list.stream().map(
+                e -> mapper.map(e, ItensDaVendaDto.class))
+                .collect(Collectors.toList()));
     }
 
     @GetMapping(value = "/buscarPorData")
-    public ResponseEntity ConsultarItensVdPorData(@RequestParam(name = "data") String data) {
-        return itensDaVendaService.litarItemDaVendaPorData(data)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<List<ItensDaVendaDto>> ConsultarItensVdPorData(@RequestParam(name = "data") String data) {
+        List<ItensDaVendaDto> list = itensDaVendaService.litarItemDaVendaPorData(data);
+        return ResponseEntity.ok(list.stream().map(
+                e -> mapper.map(e, ItensDaVendaDto.class))
+                 .collect(Collectors.toList()));
     }
 
     @GetMapping(value = "/ItensVdEntreDatas")

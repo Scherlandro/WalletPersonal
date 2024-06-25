@@ -44,7 +44,7 @@ public class ItenDaVendaServiceImpl implements ItensDaVendaService {
     }
 
     @Override
-    public Optional<ItensDaVenda> litarItemDaVendaPorData(String dt) {
+    public List<ItensDaVendaDto> litarItemDaVendaPorData(String dt) {
         return itensDaVendaRepository.litarItemDaVendaPorData(dt);
     }
 
