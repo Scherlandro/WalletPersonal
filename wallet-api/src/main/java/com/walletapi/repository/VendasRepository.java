@@ -13,6 +13,12 @@ import com.walletapi.model.Vendas;
 public interface VendasRepository extends JpaRepository<Vendas, Integer> {
 
 
+ @Query(value = "Select v.*, i.* " +
+         " from Vendas v inner join ItensDaVenda i " +
+         " on v.codevenda = i.codevendas " , nativeQuery = true)
+    List<Vendas> findAllVendas();
+
+
     @Query(value = "Select v.id_venda, v.codevenda, v.id_cliente, v.nome_cliente, v.id_funcionario, v.nome_funcionario," +
             " v.dt_venda, v.subtotal, v.desconto, v.totalgeral, v.forma_de_pagamento, v.numero_de_parcelas, i.* " +
             " from Vendas v inner join (select it.id_itens_vd, it.codevendas, it.cod_produtos,it.descricao, it.valor_compra," +
