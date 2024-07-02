@@ -15,7 +15,7 @@
 	<description>Demonstrativo Security JWT</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11.0.15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -3,6 +3,7 @@ package com.walletapi.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.walletapi.dtos.VendasDto;
 import com.walletapi.model.Vendas;
 
 public interface VendasService {

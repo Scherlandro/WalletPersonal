@@ -1,15 +1,16 @@
 package com.walletapi.serviceImpl;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.walletapi.dtos.ItensDaVendaDto;
 import com.walletapi.model.ItensDaVenda;
 import com.walletapi.repository.ItensDaVendaRepository;
 import com.walletapi.service.ItensDaVendaService;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItenDaVendaServiceImpl implements ItensDaVendaService {
@@ -29,8 +30,8 @@ public class ItenDaVendaServiceImpl implements ItensDaVendaService {
     }
 
     @Override
-    public List<ItensDaVenda> findAll() {
-        return itensDaVendaRepository.findAll();
+    public List<ItensDaVendaDto> findAll() {
+        return itensDaVendaRepository.findAllItens();
     }
 
     @Override

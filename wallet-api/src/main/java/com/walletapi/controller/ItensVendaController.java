@@ -1,18 +1,19 @@
 package com.walletapi.controller;
 
-import com.walletapi.dtos.ItensDaVendaDto;
-import com.walletapi.model.ItensDaVenda;
-import com.walletapi.repository.ItensDaVendaRepository;
-import com.walletapi.service.ItensDaVendaService;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.walletapi.dtos.ItensDaVendaDto;
+import com.walletapi.service.ItensDaVendaService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -28,7 +29,7 @@ public class ItensVendaController {
 
     @GetMapping(path = "/all")
     public ResponseEntity<List<ItensDaVendaDto>> listarItensDaVenda() {
-        List<ItensDaVenda> list = itensDaVendaService.findAll();
+        List<ItensDaVendaDto> list = itensDaVendaService.findAll();
         return ResponseEntity.ok(list.stream().map(
                 e -> mapper.map(e, ItensDaVendaDto.class))
                 .collect(Collectors.toList()));

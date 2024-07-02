@@ -3,6 +3,7 @@ package com.walletapi.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import com.walletapi.dtos.VendasDto;
 import org.springframework.stereotype.Service;
 
 import com.walletapi.model.Vendas;
@@ -21,7 +22,7 @@ public class VendasServiceImpl implements VendasService {
 
     @Override
     public List<Vendas> listarVendas() {
-        return vendasRepository.findAll();
+        return vendasRepository.findAllVendas();
     }
 
 

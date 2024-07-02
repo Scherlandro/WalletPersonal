@@ -60,10 +60,21 @@ export class VendaComponent implements OnInit {
    }
 
   listarVenda(){
-    this.vendasService.getAllSales()
+  /*  this.vendasService.getAllSales()
       .pipe().subscribe(   (data: iVendas[]) => {
       this.tbSourceVd$.data = data;
     });
+*/
+    this.vendasService.getAllSales()
+      .pipe(catchError(error => {
+        this.onError('Erro ao buscar Vendas!')
+        return of([])
+      }))
+      .subscribe((data: iVendas[]) => {
+        console.log('Vendas ==> ', data);
+        this.tbSourceVd$.data = data;
+        this.tbSourceVd$.paginator = this.paginator;
+      });
   }
 
   consultarPorCliente(nome: string) {

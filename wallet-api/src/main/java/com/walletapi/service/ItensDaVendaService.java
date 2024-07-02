@@ -1,16 +1,15 @@
 package com.walletapi.service;
 
-import com.walletapi.dtos.ItensDaVendaDto;
-import com.walletapi.model.ItensDaVenda;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import com.walletapi.dtos.ItensDaVendaDto;
+import com.walletapi.model.ItensDaVenda;
 
 
 public interface ItensDaVendaService {
 
-    List<ItensDaVenda> findAll();
+    List<ItensDaVendaDto> findAll();
 
     Optional<ItensDaVenda> findById(Integer id);
 

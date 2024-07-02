@@ -1,17 +1,23 @@
 package com.walletapi.repository;
 
-import com.walletapi.dtos.ItensDaVendaDto;
-import com.walletapi.model.ItensDaVenda;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.walletapi.dtos.ItensDaVendaDto;
+import com.walletapi.model.ItensDaVenda;
 
 @Repository
 public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Integer> {
+
+            @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
+            "from Vendas v inner join ItensDaVenda i " +
+            "on v.codevenda = i.codevendas ")
+    List<ItensDaVendaDto> findAllItens();
 
     @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
             " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +

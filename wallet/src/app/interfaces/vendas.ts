@@ -6,7 +6,7 @@ export interface iVendas {
   nomeCliente: string,
   idFuncionario: number,
   nomeFuncionario: string,
-  dtVenda: string,
+  dt_venda: string,
   subtotal: string,
   desconto: string,
   totalgeral: string,
