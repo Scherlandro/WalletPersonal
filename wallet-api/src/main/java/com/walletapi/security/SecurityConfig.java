@@ -1,9 +1,9 @@
 package com.walletapi.security;
 
-import com.walletapi.config.PasswordEnconderConfig;
-import com.walletapi.fiter.CustomAuthenticationFilter;
-import com.walletapi.fiter.CustomAuthorizationFilter;
-import lombok.RequiredArgsConstructor;
+import static org.springframework.http.HttpMethod.*;
+
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,9 +18,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
+import com.walletapi.config.PasswordEnconderConfig;
+import com.walletapi.fiter.CustomAuthenticationFilter;
+import com.walletapi.fiter.CustomAuthorizationFilter;
 
-import static org.springframework.http.HttpMethod.*;
+import lombok.RequiredArgsConstructor;
 
 
 @Configuration @EnableWebSecurity @RequiredArgsConstructor

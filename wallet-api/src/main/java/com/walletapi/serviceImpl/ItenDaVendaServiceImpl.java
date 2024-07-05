@@ -40,6 +40,11 @@ public class ItenDaVendaServiceImpl implements ItensDaVendaService {
     }
 
     @Override
+    public List<ItensDaVendaDto> listarItensDaVdPorId(Integer id){
+        return itensDaVendaRepository.findItensVdById(id);
+    }
+
+    @Override
     public List<ItensDaVendaDto> ConsultarItensVdEntreDatas(String dtIni, String dtFinal) {
         return itensDaVendaRepository.litarItemDaVendaEntreData(dtIni, dtFinal);
     }

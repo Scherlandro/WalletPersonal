@@ -7,8 +7,8 @@ import { MatSort } from "@angular/material/sort";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { of } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { iVendas } from 'src/app/interfaces/vendas';
 import { iItensVd } from "../../interfaces/itens-vd";
-import { iVendas } from "../../interfaces/vendas";
 import { ItensVdService } from "../../services/itens-vd.service";
 import { VendasService } from "../../services/vendas.service";
 import { DialogOpenSalesComponent } from "../../shared/diolog_components/dialog-open-sales/dialog-open-sales.component";
@@ -191,8 +191,25 @@ export class VendaComponent implements OnInit {
     });*/
   }
   toggleRow(element: iVendas) {
-      this.tbSourceItensDaVd$ = element.itensVd
-    console.log('ItensVD selecionados', this.tbSourceItensDaVd$)
+
+    console.log('ID da venda selecionada ==> ', element.idVenda.toString());
+    this.itensDaVdService.listarItensVdPorCodVenda(element.idVenda.toString())
+    .pipe(catchError(error => {
+      this.onError('Erro ao buscar Itens da Venda!')
+      return of([])
+    }))
+    .subscribe((data: iItensVd[]) => {
+      console.log('ItensVD ==> ', data);
+      this.tbSourceItensDaVd$.data = data;
+      var soma = 0;
+      for(var i =0;i<data.length;i++){
+        soma+=data.map(i=>i.valor_parcial)[i];
+      }
+      console.log('ItensVD somados', soma);
+      this.tbSourceItensDaVd$.paginator = this.paginator;
+    });
+
+     // this.tbSourceItensDaVd$ = element.itensVd
   }
 
 

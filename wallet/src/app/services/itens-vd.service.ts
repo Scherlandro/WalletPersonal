@@ -1,8 +1,8 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs/index";
-import {environment} from "../../environments/environment";
-import {iItensVd} from "../interfaces/itens-vd";
+import { Observable } from "rxjs/index";
+import { environment } from "../../environments/environment";
+import { iItensVd } from "../interfaces/itens-vd";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class ItensVdService {
     return this._http.get<iItensVd[]>(this.baseUrl + 'all');
   }
 
-  listarItensVdPorCodVenda(codVd: string):Observable<iItensVd[]>{
-    return this._http.get<iItensVd[]>(this.baseUrl +'listarPorCod/'+codVd);
+  listarItensVdPorCodVenda(idVd: string):Observable<iItensVd[]>{
+    return this._http.get<iItensVd[]>(this.baseUrl +'buscarPorIdVd?id='+idVd);
   }
 
   getItensVdEntreDatas(d1: string, d2: string):Observable<iItensVd[]>{

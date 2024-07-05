@@ -13,6 +13,8 @@ public interface ItensDaVendaService {
 
     Optional<ItensDaVenda> findById(Integer id);
 
+    List<ItensDaVendaDto> listarItensDaVdPorId(Integer id);
+
     List<ItensDaVendaDto> ConsultarItensVdEntreDatas(String dtIni, String dtFinal);
 
      List<ItensDaVendaDto> litarItemDaVendaPorData(String dt);

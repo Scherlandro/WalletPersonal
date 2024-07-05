@@ -19,6 +19,12 @@ public interface ItensDaVendaRepository extends JpaRepository<ItensDaVenda, Inte
             "on v.codevenda = i.codevendas ")
     List<ItensDaVendaDto> findAllItens();
 
+     @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
+            " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
+            "from Vendas v inner join ItensDaVenda i " +
+            "on v.codevenda = i.codevendas and v.idVenda = ?1 ")
+    List<ItensDaVendaDto> findItensVdById(Integer id);
+
     @Query(value = " Select new com.walletapi.dtos.ItensDaVendaDto(i.id_itens_vd,i.codevendas,i.cod_produtos," +
             " i.descricao, i.valor_compra, i.valor_venda, i.qtd_vendidas, i.valor_parcial, v.dt_venda )" +
             "from Vendas v inner join ItensDaVenda i " +

@@ -12,10 +12,15 @@ import com.walletapi.model.Vendas;
 @Repository
 public interface VendasRepository extends JpaRepository<Vendas, Integer> {
 
-
- @Query(value = "Select v.*, i.* " +
+        /*
+          @Query(value = "Select v.*, i.id_itens_vd, i.codevendas, i.cod_produtos,i.descricao, i.valor_compra," + 
+         " i.valor_venda, i.valor_parcial, i.qtd_vendidas, v.dt_venda " +
          " from Vendas v inner join ItensDaVenda i " +
          " on v.codevenda = i.codevendas " , nativeQuery = true)
+    List<Vendas> findAllVendas();
+         */
+
+@Query(value = "Select v.* from Vendas v " , nativeQuery = true)
     List<Vendas> findAllVendas();
 
 
@@ -27,7 +32,7 @@ public interface VendasRepository extends JpaRepository<Vendas, Integer> {
     List<Vendas> findVendasByNomeDoCliente(@Param("nome_cliente") String nome_cliente);
 
 
-    @Query("Select new com.walletapi.dtos.VendasDto( v.idVenda, v.idCliente, v.nomeCliente,  " +
+    @Query("Select new com.walletapi.dtos.VendasDto( v.idVenda, v.codevenda, v.idCliente, v.nomeCliente,  " +
             " v.idFuncionario, v.nomeFuncionario, v.dt_venda," +
             " v.subtotal, v.desconto, v.totalgeral, v.formasDePagamento, v.qtdDeParcelas, v.itensVd)" +
             "from Vendas v where v.nomeCliente = ?1 ")
