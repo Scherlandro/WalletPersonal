@@ -3,6 +3,10 @@
   height: 1%;
 }
 
+.table-child{
+  background-image: linear-gradient( #8438ee, #34db85);
+}
+
  .mdc-data-table__table {
    min-width: 100%;
    height: 50px;
@@ -23,6 +27,11 @@
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
+
+.componet-gradient:hover {
+  background-image: linear-gradient( #8438ee, #34db85);
+}
+
 .button-update {
   width: auto;
   height: 35px;
@@ -101,6 +110,7 @@ tr.example-detail-row {
   overflow: hidden;
   display: flex;
 }
+
 
 
 

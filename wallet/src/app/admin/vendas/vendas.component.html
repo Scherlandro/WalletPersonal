@@ -19,7 +19,7 @@
   </mat-toolbar>
   <table mat-table class="mdc-data-table__table body" [dataSource]="tbSourceVd$" multiTemplateDataRows>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsVd"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsVd" class="table-child"></tr>
 
     <!-- <ng-container class="table-head-data" matColumnDef="{{column}}" *ngFor="let column of displayedColumnsVd">
           <mat-header-cell  *matHeaderCellDef> {{column}} </mat-header-cell>
@@ -60,13 +60,14 @@
 
 
   <!-- Expanded Column -->
-  <ng-container matColumnDef="expandedDetail">
+  <ng-container  matColumnDef="expandedDetail" >
 
     <th mat-cell *matCellDef="let elemento" [attr.colspan]="displayedColumnsVd.length" >
       <div class="example-element-detail" [@detailExpand]="elemento.isExpanded ? 'expanded' : 'collapsed'">
 
-        <table mat-table class="body" [dataSource]="tbSourceItensDaVd$" >
+        <table mat-table class="table-child " [dataSource]="tbSourceItensDaVd$" >
 
+          <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
@@ -122,29 +123,26 @@
             </td>
           </ng-container>
 
-          <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
-
-          <tr class="mat-row" *matNoDataRow>
+       <!--   <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="3"></td>
           </tr>
-
+-->
         </table>
-
         </div>
     </th>
+
   </ng-container>
 
-  <tr mat-row *matRowDef="let boss; columns: displayedColumnsVd;"
-      class="example-element-row"
+  <tr mat-row *matRowDef="let boss; columns: displayedColumnsVd;"  class="example-element-row"
       [class.example-expanded-row]="boss.isExpanded"
       (click)="boss.isExpanded = !boss.isExpanded; toggleRow(boss)">
   </tr>
 
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
-    <tr class="mat-row" *matNoDataRow>
+   <!-- <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="3"></td>
-    </tr>
+    </tr>-->
 </table>
 
 

@@ -55,16 +55,9 @@ export class VendaComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarVenda();
-    this.tbSourceItensDaVd$.paginator = this.paginator;
-    this.tbSourceVd$.paginator = this.paginator;
    }
 
   listarVenda(){
-  /*  this.vendasService.getAllSales()
-      .pipe().subscribe(   (data: iVendas[]) => {
-      this.tbSourceVd$.data = data;
-    });
-*/
     this.vendasService.getAllSales()
       .pipe(catchError(error => {
         this.onError('Erro ao buscar Vendas!')
@@ -89,20 +82,6 @@ export class VendaComponent implements OnInit {
           this.tbSourceVd$.data = result;
         })
     }
-  }
-
-  listarItensVdEntreDatas(){
-    this.itensDaVdService.getItensVdEntreDatas('06/04/2020', '13/04/2020')
-      .subscribe(   (data: iItensVd[]) => {
-     // this.tbSourceItensDaVd$.data = data;
-    });
-  }
-
-  listarItensPorCodVenda(){
-    this.itensDaVdService.listarItensVdPorCodVenda('1')
-      .subscribe(   (data: iItensVd[]) => {
-     // this.tbSourceItensDaVd$.data = data;
-    });
   }
 
   changeSales(value: any){
@@ -206,10 +185,7 @@ export class VendaComponent implements OnInit {
         soma+=data.map(i=>i.valor_parcial)[i];
       }
       console.log('ItensVD somados', soma);
-      this.tbSourceItensDaVd$.paginator = this.paginator;
     });
-
-     // this.tbSourceItensDaVd$ = element.itensVd
   }
 
 
