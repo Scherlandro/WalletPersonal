@@ -1,4 +1,8 @@
-
+.main-login{
+  padding: 2% 2% 2% 2%;
+  display: flex;
+  justify-content: center;
+}
 .container{
   --color-light-50: #b9e374;
   --color-dark-50: #c5a0ce;
@@ -55,6 +59,12 @@
   color: #fcef00;
   box-shadow: 10px 5px 5px rgba(28, 236, 32, 0.4);
   border-radius: 15px;
+}
+.bt-forgot-password{
+  background: var(--color-gradient);
+  color: #00fc54;
+  box-shadow: 10px 5px 5px rgba(122, 28, 236, 0.4);
+  border-radius: 8px;
 }
 .input-login {
   padding-inline-start: 10px;

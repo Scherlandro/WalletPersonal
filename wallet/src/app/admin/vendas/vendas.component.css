@@ -1,5 +1,10 @@
+.main-body{
+  width: auto;
+  height: auto;
+}
+
 .table-head-data{
-  width: fit-content;
+  width: auto;
   height: 1%;
 }
 
@@ -8,14 +13,12 @@
 }
 
  .mdc-data-table__table {
-   min-width: 100%;
-   height: 50px;
+   height: fit-content;
    background-color: rgba(51, 33, 83, 0.07);
    -webkit-border-radius: 20px;
    -moz-border-radius: 20px;
    border-radius: 20px;
-   table-layout: fixed;
-   width: fit-content;
+   table-layout: auto;
  }
 
 .componet-gradient {

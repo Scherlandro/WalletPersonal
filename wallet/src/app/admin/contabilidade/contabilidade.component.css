@@ -1,9 +1,7 @@
-.comp-contabil-sizes{
-  width: auto;
-  max-height: 450px;
-  height: auto;
-}
-.comp-contabil-colors{
+.body-contabil{
+  border-radius: 8px;
+ align-content: center;
+  justify-content: center;
   color: #00030a;
   background-image: -webkit-linear-gradient(top, #4d1d89, #87f3be);
   background-image: -moz-linear-gradient(top, #4d1d89, #87f3be);
@@ -13,27 +11,25 @@
 }
 
 .button-sizes{
-  width: 180px;
-  height: 30px;
-  border-radius: 20px;
+  position: right;
+  width: 80%;
+  height: auto;
+  border-radius: 15px;
   background-image: -webkit-linear-gradient(top, #d5c9e5, #5b615e);
 }
 .input-date{
-  width: 120px;
-  height: 25px;
+  width: 80%;
+  height: auto;
   padding: 1px;
   border-radius: 8px;
   background-image: -webkit-linear-gradient(top, #d5c9e5, #5b615e);
 }
 .config-component{
   display: grid ;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-gap: 2fr;
+  grid-template-columns: 2fr 2fr 3fr;
+  grid-gap: 4fr;
+  padding:10px;
 }
-.input-out-line{
-  border-left:none;
-  border-right: none;
-  border-top:none;
-}
+
 
 

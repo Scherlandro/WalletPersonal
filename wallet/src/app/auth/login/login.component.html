@@ -1,16 +1,6 @@
-<!--
-<div >
-<mat-form-field appearance="outline">
-<mat-icon >search</mat-icon>
- <form [formGroup]="clienteControl">
-   <input class="form-control"  type="text"  id="fname" placeholder="Department Name"  formControlName="name"
-     autocomplete="off"   />
-   <p>{{clienteControl.get('name').value}}</p>
- </form>
-</mat-form-field>
-</div>
--->
-<div >
+
+
+<div  >
 
   <mat-icon class="cursor-home" routerLink="" >home_circle</mat-icon>
 <mat-card-content class="container conteudo-login">
@@ -72,6 +62,7 @@
         <mat-icon>input</mat-icon>
         {{'Login'}}
       </button>
+     <h5> <a class="bt-forgot-password" href="#">I forgot my password!</a> </h5>
       </mat-card-content>
 
     </form>
@@ -86,82 +77,3 @@
 
 
 
-<!--
- <mat-card-content class="root">
-     <mat-card class="container-log">
-      <form class="login_form">
-        &lt;!&ndash; FORM HEADER &ndash;&gt;
-        <div class="form_header">
-          <h1>Login</h1>
-          <i class="mode_icon" ></i>
-        </div>
-
-        &lt;!&ndash; SOCIAL MEDIA LINKS &ndash;&gt;
-        <div class="social_media">
-          &lt;!&ndash; FACEBOOK &ndash;&gt;
-          <a href="#">
-            <img src="assets/imgs/facebook.png" alt="">
-          </a>
-
-          &lt;!&ndash; GOOGLE &ndash;&gt;
-          <a href="#">
-            <img src="assets/imgs/google.png" alt="Google logo">
-          </a>
-
-          &lt;!&ndash; GITHUB &ndash;&gt;
-          <a href="#">
-            <img src="assets/imgs/github.png" alt="">
-          </a>
-        </div>
-
-        &lt;!&ndash; INPUTS &ndash;&gt;
-        <div class="inputs">
-          &lt;!&ndash; NAME &ndash;&gt;
-          <div class="input-box">
-            <label for="name">
-              Name
-              <div class="input-field">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="name" name="name">
-              </div>
-            </label>
-          </div>
-
-          &lt;!&ndash; EMAIL &ndash;&gt;
-          <div class="input-box">
-            <label for="email">
-              E-mail
-              <div class="input-field">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email2" name="email">
-              </div>
-            </label>
-          </div>
-
-          &lt;!&ndash; PASSWORD &ndash;&gt;
-          <div class="input-box">
-            <label for="password">
-              Password
-              <div class="input-field">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" id="password2" name="password">
-              </div>
-            </label>
-
-            &lt;!&ndash; FORGOT PASSWORD &ndash;&gt;
-            <div id="forgot_password">
-              <a href="#">
-                Forgot your password?
-              </a>
-            </div>
-          </div>
-        </div>
-
-        &lt;!&ndash; LOGIN BUTTON &ndash;&gt;
-        <button type="submit" class="login_button">
-          Login
-        </button>
-      </form>
-  </mat-card>
-</mat-card-content>
--->
