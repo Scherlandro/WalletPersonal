@@ -5,7 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
-import { of } from "rxjs";
+import {of, timeout} from "rxjs";
 import { catchError } from "rxjs/operators";
 import { iVendas } from 'src/app/interfaces/vendas';
 import { iItensVd } from "../../interfaces/itens-vd";
@@ -14,6 +14,8 @@ import { VendasService } from "../../services/vendas.service";
 import { DialogOpenSalesComponent } from "../../shared/diolog_components/dialog-open-sales/dialog-open-sales.component";
 import { DialogProdutoComponent } from "../../shared/diolog_components/dialog-produto/dialog-produto.component";
 import { ErrorDiologComponent } from "../../shared/diolog_components/error-diolog/error-diolog.component";
+import {SelectionModel} from "@angular/cdk/collections";
+import {co} from "chart.js/dist/chunks/helpers.core";
 
 
 @Component({
@@ -43,7 +45,10 @@ export class VendaComponent implements OnInit {
   produtControl = new FormControl();
   listaItensVd: iItensVd[]=[];
   itensVdFiltered: iItensVd[]=[];
-
+  rowClicked: any[]=[];
+  selection = new SelectionModel<iVendas>(true, []);
+  count = 0;
+  $isExpanded= false;
   constructor(
               private vendasService: VendasService,
               public dialog: MatDialog,
@@ -64,7 +69,7 @@ export class VendaComponent implements OnInit {
         return of([])
       }))
       .subscribe((data: iVendas[]) => {
-        console.log('Vendas ==> ', data);
+      //  console.log('Vendas ==> ', data);
         this.tbSourceVd$.data = data;
         this.tbSourceVd$.paginator = this.paginator;
       });
@@ -169,23 +174,94 @@ export class VendaComponent implements OnInit {
       }
     });*/
   }
-  toggleRow(element: iVendas) {
 
-    console.log('ID da venda selecionada ==> ', element.idVenda.toString());
-    this.itensDaVdService.listarItensVdPorCodVenda(element.idVenda.toString())
-    .pipe(catchError(error => {
-      this.onError('Erro ao buscar Itens da Venda!')
-      return of([])
-    }))
-    .subscribe((data: iItensVd[]) => {
-      console.log('ItensVD ==> ', data);
-      this.tbSourceItensDaVd$.data = data;
-      var soma = 0;
-      for(var i =0;i<data.length;i++){
-        soma+=data.map(i=>i.valor_parcial)[i];
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.tbSourceVd$.data.length;
+    var compare = numSelected === numRows;
+    console.log('Comparater IsAllSelected', numSelected )
+    return numSelected === numRows;
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: iVendas): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.idVenda + 1}`;
+  }
+
+
+  rowClickHandler(element: any){
+
+   console.log('-------Val isExpanded ',element.isExpanded);
+    console.log('count antes if', this.count);
+    console.log('Begin $IsExpanded', this.$isExpanded);
+
+    if(this.count === 0 && !this.$isExpanded && element.isExpanded === true){
+     // this.count += 1;
+      console.log('count no if', this.count, '$isEx..', !this.$isExpanded);
+      if(this.count === 0 && !this.$isExpanded) {
+        for (var i = 0; i < 2; i++) {
+          console.log('valor i', i);
+          this.count += i;
+          this.tbSourceItensDaVd$.data = element.itensVd;
+        }
+        this.$isExpanded = true;
+        element.isExpanded = null;
       }
-      console.log('ItensVD somados', soma);
-    });
+    }else {
+
+      this.$isExpanded = element.isExpanded;
+    }
+
+  }
+
+  toggleRow(element: any) {
+
+  //  console.log('element before ==> ', element.isExpanded , 'ID vd', element);
+   // console.log('ID da venda selecionada ==> ', element.idVenda.toString());
+
+    /*  this.itensDaVdService.listarItensVdPorCodVenda(element.idVenda.toString())
+        .pipe(catchError(error => {
+          this.onError('Erro ao buscar Itens da Venda!')
+          return of([])
+        }))
+        .subscribe((data: iItensVd[]) => {
+       //   console.log('ItensVD ==> ', data);
+          this.tbSourceItensDaVd$.data = data;
+          var soma = 0;
+          for (var i = 0; i < data.length; i++) {
+            soma += data.map(i => i.valor_parcial)[i];
+          }*/
+       //   console.log('ItensVD somados', soma);
+     /*     console.log('element half', element.isExpanded);
+          if (soma > 0 && element.isExpanded < 2) {
+           for(var j = 0; j < 2; j++){
+             element.isExpanded += j;
+           }
+            console.log('element out', element.isExpanded);
+          }*/
+       //buscando o menor valor
+          var matriz = [11, 20, 3, 4, 15, 9, 42, 18, 31];
+          var smallest = matriz[0];
+          for(var i=1; i<matriz.length ; i++){
+            if(matriz[i] < smallest){
+              smallest = matriz[i];
+            }else {
+              smallest = matriz[i];
+            }
+        //    console.log('Menores',smallest);
+          }
+          // busca mais simplificado
+          var small = matriz.sort((a, b) => a - b);
+       //   console.log('Menor RESULT',small[0]);
+       //   console.log('RESULT ordenado',small);
+       //   console.log('Maior RESULT',small[matriz.length - 1]);
+
+       // });
+
+
   }
 
 
