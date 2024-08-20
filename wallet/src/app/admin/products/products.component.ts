@@ -98,6 +98,7 @@ export class ProductsComponent implements OnInit {
     valor = valor.trim().toLowerCase();
     this.tbSourceProdutos$.filter = valor;
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.tbSourceProdutos$.filter = filterValue.trim().toLowerCase();
@@ -169,6 +170,10 @@ export class ProductsComponent implements OnInit {
         });
     }
   }
+  /*  removerLinha(index: number){
+    this.tbSourceProdutos$.splice(index,1);
+    this.tbSourceProdutos$.length.toString(1);
+    }    */
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDiologComponent, {
@@ -184,19 +189,6 @@ export class ProductsComponent implements OnInit {
     console.log('Linha clicada -->: ', row);
   }
 
-  /*
-  removerLinha(index: number){
-    console.log(index);
-    this.tbSourceProdutosL$.splice(index,1);
-    this.tbSourceProdutosL$.length.toString(1);
-    }
-
-    search(event:any){
-      this.searchTerm = (event.target as HTMLInputElement).value;
-      console.log(this.searchTerm);
-      this.cartService.search.next(this.searchTerm);
-    }
-  */
 
 }
 

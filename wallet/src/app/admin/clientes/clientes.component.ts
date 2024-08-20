@@ -68,14 +68,12 @@ export class ClientesComponent implements OnInit {
       });
   }
 
-  /*
-    buscar(){
+  /*   buscar(){
       if(this.clienteControl.value == ""){  this.ngOnInit();
       }else{  this.dataSourceCliente$ = this.dataSourceCliente$.filter(
           res => { return res.estado.toLocaleLowerCase()
               .match(this.clienteControl.value.toLocaleLowerCase());  })}
-    }
-  */
+    }  */
 
   openDialogo(eventCli: ICliente) {
     console.log("Dados do elementoDialog", eventCli)

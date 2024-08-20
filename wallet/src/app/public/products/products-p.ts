@@ -53,7 +53,7 @@ export class ProductsPComponent implements OnInit {
   /*  onImageLoad(e: any){
     this.imgWidth=(this.imgMain.nativeElement as HTMLImageElement ).width;
     this.imgHeight=(this.imgMain.nativeElement as HTMLImageElement).height;
-  }*/
+  } */
 
   listarProdutos(){
     this.prodService.getTodosProdutos()

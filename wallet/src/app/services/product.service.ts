@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/index";
 import {delay, first, map, tap} from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { iProduto } from "../interfaces/product";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { iProduto } from "../interfaces/product";
 export class ProductService {
 
   private baseUrl: string = environment.API_PATH + 'api/produtos/';
-  private readonly isLocal = true; //environment.isLocal;
+  private readonly isLocal = true;  //environment.isLocal;
 
   constructor(private _http: HttpClient) {
   }

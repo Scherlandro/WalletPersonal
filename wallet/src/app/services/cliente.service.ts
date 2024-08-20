@@ -26,20 +26,17 @@ export class ClienteService {
   public getClientePorID(id: number): Observable<ICliente[]>{
     return this._http.get<ICliente[]>(this.baseUrl + id);
   }
-  /*
-  getClientePorID(id: string): Observable<any> {
+
+  /*  getClientePorID(id: string): Observable<any> {
     return this._http.get(this.baseUrl + id)
       .pipe(map(response => response));
-}
-   */
+}  */
 
   createCliente(element: ICliente): Observable<ICliente> {
-    console.log("Evento chegou no service", element)
     return this._http.post<ICliente>(this.baseUrl+'/salvar', element);
   }
 
   editElement(element: ICliente): Observable<ICliente> {
-    console.log("Evento chegou no service", element)
     return this._http.put<ICliente>(this.baseUrl+'/editar', element);
   }
 
