@@ -15,6 +15,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
 import {MatDialogModule} from '@angular/material/dialog';
@@ -44,6 +45,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
    MatCardModule,
    MatExpansionModule,
    MatProgressSpinnerModule,
+   MatProgressBarModule,
    MatTabsModule,
    MatListModule,
    MatDialogModule,

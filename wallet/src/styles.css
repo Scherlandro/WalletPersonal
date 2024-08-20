@@ -57,3 +57,10 @@ body {
   border-radius: 20px;
 }
 
+.loading-spinner {
+  padding: 2% 450% 15% 80%;
+  background: rgba(0, 0, 0, 0.05);
+  display:inline-list-item;
+  align-items: center;
+  justify-content: center;
+}

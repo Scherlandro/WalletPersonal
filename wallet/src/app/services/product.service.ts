@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/index";
-import { map } from "rxjs/operators";
+import {delay, first, map, tap} from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { iProduto } from "../interfaces/product";
 
@@ -17,7 +17,12 @@ export class ProductService {
   }
 
   getTodosProdutos(): Observable<iProduto[]> {
-    return this._http.get<iProduto[]>(this.baseUrl+'all');
+    return this._http.get<iProduto[]>(this.baseUrl+'all')
+      .pipe(
+        first(),
+        delay(3000),
+        tap(sales=>console.log(sales))
+      ) ;
   }
 
   getListarTodos(): Observable<any> {
@@ -42,7 +47,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
     return this._http.get(`${this.baseUrl}'buscarPorNome?nome_produto=${valor}`).pipe(map(res => res));
   }
 
-  search(valor: string): Observable<iProduto[]> {
+  search(valor: string): Observable<any> {
     return this._http.get<iProduto[]>(this.baseUrl + valor);
   }
 

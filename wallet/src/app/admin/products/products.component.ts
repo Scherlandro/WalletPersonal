@@ -28,17 +28,18 @@ export class ProductsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   pageEvent!: PageEvent;
   displayedColumns: string[] = ['cod_produto', 'descricao'
-    , 'valor_venda', 'quantidade_estoque', 'dt_cadastro', 'imagem', 'opicoes'];
-  tbSourceProdutos$ = new MatTableDataSource<iProduto>();
+    , 'valor_venda', 'estoque', 'dt_cadastro', 'imagem', 'opicoes'];
+  tbSourceProdutos$: MatTableDataSource<iProduto>;
   produtosFiltered: iProduto[] = [];
+  loaded: any;
   products: iProduto[] = [];
   produtoControl = new FormControl();
   searchTerm !: string;
 
   constructor(private prodService: ProductService,
-              /* private cartService: ShoppingCartService,*/
-              public dialog: MatDialog,
+              public dialog: MatDialog
   ) {
+    this.tbSourceProdutos$= new MatTableDataSource();
   }
 
   ngOnInit(): void {
@@ -49,9 +50,9 @@ export class ProductsComponent implements OnInit {
     this.prodService.getTodosProdutos()
       .pipe(catchError(error => {
         this.onError('Erro ao buscar produto.')
-        return of([])
-      }))
+        return of([])}))
       .subscribe((rest: iProduto[]) => {
+        this.loaded = rest;
         this.tbSourceProdutos$.data = rest;
         this.tbSourceProdutos$.paginator = this.paginator;
       });
@@ -65,7 +66,6 @@ export class ProductsComponent implements OnInit {
           return of([])
         })).subscribe((result: iProduto[]) => {
         this.tbSourceProdutos$.data = result;
-        console.log("Retorno da MatTableDat ", result)
       })
     }
   }
@@ -94,9 +94,17 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  aplicarFiltro(valor: string) {
+  aplicarFiltro(valor: any) {
     valor = valor.trim().toLowerCase();
     this.tbSourceProdutos$.filter = valor;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tbSourceProdutos$.filter = filterValue.trim().toLowerCase();
+
+    if (this.tbSourceProdutos$.paginator) {
+      this.tbSourceProdutos$.paginator.firstPage();
+    }
   }
 
   openDialogo(eventProd: iProduto) {
@@ -162,9 +170,9 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  onError(errrorMsg: string) {
+  onError(errorMsg: string) {
     this.dialog.open(ErrorDiologComponent, {
-      data: errrorMsg
+      data: errorMsg
     });
   }
 
@@ -175,19 +183,6 @@ export class ProductsComponent implements OnInit {
   mostrarLinhaClicada(row: any) {
     console.log('Linha clicada -->: ', row);
   }
-
-
-  /*
-    buscarPorNome(valor:string){
-      if(valor !== '') {
-        this.prodService.searchByName(valor).subscribe(
-          (rest: IProduto[]) => {
-            this.tbSourceProdutos$.data = rest;
-            // this.tbSourceProdutos$.paginator = this.paginator;
-          });
-      }
-    }*/
-
 
   /*
   removerLinha(index: number){
@@ -201,26 +196,7 @@ export class ProductsComponent implements OnInit {
       console.log(this.searchTerm);
       this.cartService.search.next(this.searchTerm);
     }
-
-    buscar(){
-      if(this.produtoControl.value == ""){
-        this.ngOnInit();
-      }else{
-        this.tbSourceProdutos$.data = this.produtosFiltered.filter(
-          res => {  return res.nome_produto.toLocaleLowerCase()
-              .match(this.produtoControl.value.toLocaleLowerCase());
-          } ) }
-    }
-
-    ...   implements OnInit, AfterViewInit {
-
-  ngAfterViewInit(): void {
-    this.tbSourceProdutos$.sort = this.sort;
-  }
-
-
   */
-
 
 }
 

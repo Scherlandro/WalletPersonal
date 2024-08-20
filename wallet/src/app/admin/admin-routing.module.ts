@@ -8,6 +8,7 @@ import {ProductsComponent} from "./products/products.component";
 import {ContabilidadeComponent} from "./contabilidade/contabilidade.component";
 import {VendaComponent} from "./vendas/vendas.component";
 import {CAddComponent} from "./vendas/c-add/c-add.component";
+import {SalesComponent} from "./vendas/sales/sales.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'produtos', component: ProductsComponent},
       {path: 'contabilidade', component: ContabilidadeComponent},
       {path: 'vendas', component: VendaComponent},
+      {path: 'sales', component: SalesComponent},
       {path: 'addIten',component: CAddComponent},
       /*
        {

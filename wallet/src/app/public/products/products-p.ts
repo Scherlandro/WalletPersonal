@@ -26,11 +26,11 @@ export class ProductsPComponent implements OnInit {
   @ViewChild(MatTable) tableProduto!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  pageEvent!: PageEvent;
-  displayedColumns: string[] = ['descricao','preco',
-    'qtd','imagem','opicoes'];
-  tbSourceProdutos$ = new MatTableDataSource<iProduto>();
+  pageEvent: PageEvent;
+  displayedColumns: string[] = ['descricao','preco','estoque','imagem','opicoes'];
+  tbSourceProdutos$: MatTableDataSource<iProduto>;
   produtosFiltered: iProduto[] = [];
+  loaded:any;
   products: iProduto[] = [];
   produtoControl = new FormControl();
   searchTerm !:any;
@@ -41,17 +41,18 @@ export class ProductsPComponent implements OnInit {
   constructor(private prodService: ProductService,
               private cartService: ShoppingCartService,
               public dialog: MatDialog
-              ) {
+  ) {
+    this.tbSourceProdutos$= new MatTableDataSource();
+    this.pageEvent = new PageEvent();
   }
 
   ngOnInit(): void {
     this.listarProdutos();
    }
-/*  onImageLoad(e: any){
 
+  /*  onImageLoad(e: any){
     this.imgWidth=(this.imgMain.nativeElement as HTMLImageElement ).width;
     this.imgHeight=(this.imgMain.nativeElement as HTMLImageElement).height;
-
   }*/
 
   listarProdutos(){
@@ -60,9 +61,8 @@ export class ProductsPComponent implements OnInit {
         this.onError('Erro ao buscar produto.')
         return of([])}))
       .subscribe(  (rest: iProduto[])=>  {
-        this.tbSourceProdutos$.data = rest;
-        this.tbSourceProdutos$.paginator = this.paginator;
-        // this.produtosFiltered = res;
+        this.loaded = rest;
+          this.tbSourceProdutos$.data = rest;
       } );
   }
 
@@ -97,8 +97,15 @@ export class ProductsPComponent implements OnInit {
 
   aplicarFiltro(valor: string) {
     valor = valor.trim().toLowerCase(); // Remove espaços em branco
-    //valor = valor.toLowerCase(); // MatTableDataSource padrão para lowercase
     this.tbSourceProdutos$.filter = valor;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tbSourceProdutos$.filter = filterValue.trim().toLowerCase();
+
+    if (this.tbSourceProdutos$.paginator) {
+      this.tbSourceProdutos$.paginator.firstPage();
+    }
   }
 
   loginAndAddProd(){
@@ -114,11 +121,15 @@ export class ProductsPComponent implements OnInit {
     }
   }
 
-  onError(errrorMsg: string) {
+  onError(errorMsg: string) {
     this.dialog.open(ErrorDiologComponent, {
-      data: errrorMsg
+      data: errorMsg
     });
   }
+  onMatSortChange() {
+    this.tbSourceProdutos$.sort = this.sort;
+  }
+
 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
@@ -130,63 +141,8 @@ export class ProductsPComponent implements OnInit {
      this.prodService.search(valor).subscribe(
       (result:iProduto[]) => {  this.tbSourceProdutos$.data = result }
     );
-   //  this.prodService.getTodosProdutos().pipe(
-   //   map((options) => (options.length == 0 ? true : false))
-  //  );
-   // this.router.navigate(['/search-results-list']);
-    //valor.resetForm();
   }
 
 
-
-
-
-}
-/*
-https://youtu.be/aPU1YawBWN8
-https://youtu.be/jcpS5d4yz2w
- */
-
-
-/*
-   addProductCart(product: ProdutoModel_T): void {
-    this.cartService.addProduct();
-  }
-
-  onSearch() {
-    const fields = 'name,description,version,homepage';
-    let value = this.produtoControl.value;
-    if (value && (value = value.trim()) !== '') {
-    const params_ = {
-        search: value,
-        fields: fields
-      };
-      let params = this.prodService.getProdutoPorCod(value.toString());
-      params = params;
-      params = params;
-      this.tbSourceProdutos$ = this.prodService.getProdutoPorCod(value.toString())
-        .pipe(
-          tap((res: any) => (this.total = res.total)),
-          map((res: any) => res.results)
-        );
-      console.log('Valor cod Produto ->', this.tbSourceProdutos$);
-
-}
 }
 
- */
-/*
-  ngOnInit(): void {
-    this.tbSourceProdutos$ = this.queryField.valueChanges
-      .pipe(
-        map(value => value.trim()),
-        filter(value => value.length > 1),
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap(value => console.log(value)),
-        switchMap((value:string) => this.prodService.getProdutoPorCod(value.toString())) ,
-        tap((res: any) => this.total = res.total),
-        map((res: any) => res.results)
-  );
-}
- */

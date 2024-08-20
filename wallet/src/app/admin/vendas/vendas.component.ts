@@ -66,10 +66,8 @@ export class VendaComponent implements OnInit {
     this.vendasService.getAllSales()
       .pipe(catchError(error => {
         this.onError('Erro ao buscar Vendas!')
-        return of([])
-      }))
+        return of([])}))
       .subscribe((data: iVendas[]) => {
-      //  console.log('Vendas ==> ', data);
         this.tbSourceVd$.data = data;
         this.tbSourceVd$.paginator = this.paginator;
       });
@@ -194,26 +192,26 @@ export class VendaComponent implements OnInit {
 
   rowClickHandler(element: any){
 
-   console.log('-------Val isExpanded ',element.isExpanded);
-    console.log('count antes if', this.count);
-    console.log('Begin $IsExpanded', this.$isExpanded);
-
-    if(this.count === 0 && !this.$isExpanded && element.isExpanded === true){
-     // this.count += 1;
-      console.log('count no if', this.count, '$isEx..', !this.$isExpanded);
-      if(this.count === 0 && !this.$isExpanded) {
-        for (var i = 0; i < 2; i++) {
-          console.log('valor i', i);
-          this.count += i;
-          this.tbSourceItensDaVd$.data = element.itensVd;
-        }
-        this.$isExpanded = true;
-        element.isExpanded = null;
-      }
-    }else {
-
-      this.$isExpanded = element.isExpanded;
+   console.log(' ELEMENT ',element);
+   console.log('element.isExpanded ',element.isExpanded);
+    console.log(' count', this.count);
+    console.log(' $IsExpanded', this.$isExpanded);
+    if(this.count === 1){
+      element.isExpanded = false;
+      alert('Feche a linha anterior')
     }
+    for (var i = 0; i < 2; i++) {
+      console.log('valor i', i);
+      this.count += i;
+      console.log('COUNT', this.count);
+      if (this.count === 0 ) {
+        console.log('element.isExpanded ', element.isExpanded);
+        this.tbSourceItensDaVd$.data = element.itensVd;
+        console.log('COUNT', this.count);
+      }
+    }
+        // element.isExpanded = this.$isExpanded ;
+      console.log(' element.isExpanded', element.isExpanded);
 
   }
 

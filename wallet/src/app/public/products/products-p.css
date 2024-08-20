@@ -25,14 +25,6 @@
   background: rgba(0, 3, 10, 0.05);
 }
 
-.loading-spinner {
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .edit {
   width: 70%;
   height: 70%;
@@ -74,6 +66,31 @@ ui.grid {
   align-items: stretch;
   padding: 0;
   margin: -1rem;
+}
+
+.tab-p{
+  height:2%;
+  width: 100%;
+  background-color: rgba(53, 33, 83, 0);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  table-layout: fixed;
+}
+
+.spinner-p{
+  padding: 25px 480px 25px 480px;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress-bar-p{
+  padding: 25px 150% 25px 250%;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ui.grid>.row {

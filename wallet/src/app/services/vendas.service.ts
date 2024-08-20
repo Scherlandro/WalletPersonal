@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import {catchError, delay, first, map, tap} from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { iVendas } from '../interfaces/vendas';
 
@@ -16,6 +16,11 @@ export class VendasService {
 
   getAllSales(): Observable<iVendas[]>{
     return this._http.get<iVendas[]>(this.baseUrl + 'all')
+      .pipe(
+        first(),
+        delay(3000),
+        tap(sales => console.log(sales))
+      );
   }
 
   listarVdPorCliente(valor: string): Observable<any> {

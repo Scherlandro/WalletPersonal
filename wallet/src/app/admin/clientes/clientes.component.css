@@ -44,6 +44,12 @@ body{
   align-items: center;
   justify-content: center;
 }
+.loading-spinner-c{
+  padding: 25px 130% 25px 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .button-add{
   max-width: 80px;

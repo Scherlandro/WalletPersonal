@@ -7,22 +7,28 @@
   <mat-toolbar class="head-table body"  >
 
       <span> Produtos </span>
-      <input class="input-table" type="text" placeholder=" Digite a consulta" matInput
+    <!--  <input class="input-table" type="text" placeholder=" Digite a consulta" matInput
              [formControl]="produtoControl"
              (keypress)="changeProdutos(produtoControl.value)"
              (keydown)="listarProdutos()"
              (ngModelChange)="consultarPorNome(produtoControl.value)"
-      />
+      />-->
+      <input class="input-table" (keyup)="applyFilter($event)" placeholder="Digite" #input>
       <button class="button-search body"  (click)="consultarPorNome(produtoControl.value)">Search</button>
 
   </mat-toolbar>
 
-   <table mat-table class="componet-table body" [dataSource]="tbSourceProdutos$" >
+   <!-- <div *ngIf="loaded ; else loading">-->
+
+      <table mat-table class="tab-p body" [dataSource]="tbSourceProdutos$" matSort
+             (matSortChange)="onMatSortChange()"
+             matSortDirection="asc"
+             multiTemplateDataRows>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
     <ng-container matColumnDef="descricao">
       <th mat-header-cell *matHeaderCellDef> Descrição </th>
-      <td mat-cell *matCellDef="let element"> {{element.nomeProduto}} </td>
+      <td mat-cell *matCellDef="let element" class="colum-table"> {{element.nomeProduto}} </td>
     </ng-container>
 
     <ng-container matColumnDef="preco">
@@ -30,7 +36,7 @@
       <td mat-cell *matCellDef="let element"> {{element.valorVenda | currency: 'BRL'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="qtd">
+    <ng-container matColumnDef="estoque">
       <th mat-header-cell *matHeaderCellDef> Em Estoque  </th>
       <td mat-cell  *matCellDef="let element"> {{element.qtdEstoque}} </td>
     </ng-container>
@@ -55,15 +61,25 @@
 
     <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
 
-  </table>
+       <!-- <mat-spinner class="spinner-p" *matNoDataRow ></mat-spinner>-->
 
-    <mat-paginator [length]="100"
-                   [pageSize]="5"
-                   [pageSizeOptions]="[5, 10, 25, 100]"
-                   (page)="pageEvent = $event"
-                   aria-label="Select page"
-                   class="componet-table body"   >
+        <mat-progress-bar class="progress-bar-p" mode="query"  *matNoDataRow ></mat-progress-bar>
+
+      </table>
+
+   <mat-paginator [length]="100"
+                      [pageSize]="5"
+                      [pageSizeOptions]="[5, 10, 25, 100]"
+                      (page)="pageEvent = $event"
+                      class="componet-table body"   >
     </mat-paginator>
+
+  <!--  </div>
+    <ng-template #loading>
+      <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>-->
 
   </mat-card-content>
 </div>

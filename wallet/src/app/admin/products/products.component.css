@@ -27,9 +27,9 @@
   max-width: max-content;
 }
 
-.loading-spinner{
-  padding: 25px;
-  background: rgba(0,0,0,0.15);
+.loading-spinner-p{
+  padding: 25px 480px 25px 480px;
+  background: rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;

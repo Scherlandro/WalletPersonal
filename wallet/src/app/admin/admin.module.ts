@@ -27,6 +27,7 @@ import { ContabilidadeComponent } from './contabilidade/contabilidade.component'
 import {HighchartsChartModule} from "highcharts-angular";
 import {VendaComponent} from "./vendas/vendas.component";
 import {CAddComponent} from "./vendas/c-add/c-add.component";
+import {SalesComponent} from "./vendas/sales/sales.component";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {CAddComponent} from "./vendas/c-add/c-add.component";
     ProductsComponent,
     ContabilidadeComponent,
     VendaComponent,
+    SalesComponent,
     CAddComponent
   ],
     imports: [

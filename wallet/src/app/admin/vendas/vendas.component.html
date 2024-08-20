@@ -67,7 +67,7 @@
 
         <table mat-table class="table-child " [dataSource]="tbSourceItensDaVd$" >
 
-          <tr mat-row *matRowDef=" let row; columns: displayedColumns;"></tr>
+          <tr mat-row *matRowDef=" let row; columns: displayedColumns"></tr>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
@@ -132,11 +132,20 @@
     </th>
 
   </ng-container>
+    <tr mat-row *matRowDef="let headRow; columns: displayedColumnsVd;"
+        (click)="headRow.isExpanded = !headRow.isExpanded;
+      rowClickHandler(headRow)"
+    >
+    </tr>
+<!--     <tr mat-row *matRowDef="let headRow; columns: displayedColumnsVd;"
+          (click)="headRow.isExpanded = headRow ? !headRow.isExpanded : headRow.isExpanded;
+             rowClickHandler(headRow)"  >
+         </tr>      -->
 
-  <tr mat-row *matRowDef="let boss; columns: displayedColumnsVd;"  class="example-element-row"
+<!--  <tr mat-row *matRowDef="let boss; columns: displayedColumnsVd;"  class="example-element-row"
       [class.example-expanded-row]="boss.isExpanded"
       (click)="boss.isExpanded = !boss.isExpanded; toggleRow(boss)">
-  </tr>
+  </tr>-->
 
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 

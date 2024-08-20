@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 import {ICliente} from "../interfaces/cliente";
+import {delay, first, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,12 @@ export class ClienteService {
   constructor(private _http: HttpClient) { }
 
   public getTodosClientes(): Observable<ICliente[]>{
-    return this._http.get<ICliente[]>(this.baseUrl+'/all');
+    return this._http.get<ICliente[]>(this.baseUrl+'/all')
+      .pipe(
+        first(),
+        delay(3000),
+        tap(clients=>console.log(clients))
+      ) ;
   }
 
   public getClientePorID(id: number): Observable<ICliente[]>{
