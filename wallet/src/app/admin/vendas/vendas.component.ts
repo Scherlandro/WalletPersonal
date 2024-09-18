@@ -15,7 +15,6 @@ import { DialogOpenSalesComponent } from "../../shared/diolog_components/dialog-
 import { DialogProdutoComponent } from "../../shared/diolog_components/dialog-produto/dialog-produto.component";
 import { ErrorDiologComponent } from "../../shared/diolog_components/error-diolog/error-diolog.component";
 import {SelectionModel} from "@angular/cdk/collections";
-import {co} from "chart.js/dist/chunks/helpers.core";
 
 
 @Component({
@@ -87,6 +86,19 @@ export class VendaComponent implements OnInit {
     }
   }
 
+  listarItensVdPorCod(element : any){
+    this.tbSourceItensDaVd$.data.clear;
+
+      this.itensDaVdService.listarItensVdPorCodVenda(element.toString())
+        .pipe(catchError(error => {
+          this.onError('Erro ao buscar intens da Vendas!')
+          return of([])}))
+        .subscribe((data: iItensVd[]) => {
+          this.tbSourceItensDaVd$.data = data;
+          this.tbSourceItensDaVd$.paginator = this.paginator;
+        });
+  }
+
   changeSales(value: any){
     if (value) {
       this.itensVdFiltered = this.listaItensVd.filter(i => i.descricao.toString()
@@ -151,33 +163,12 @@ export class VendaComponent implements OnInit {
       }
     });
 
-  /*  dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        if (this.tbSourceItensDaVd$.data
-          .map(p => p.id).includes(result.id)) {
-          this.itensDaVdService.getItensVdEntreDatas(result)
-            .subscribe((data: IProduto) => {
-              const index = this.tbSourceItensDaVd$.data
-                .findIndex(p => p.id === data.id_produto);
-              this.tbSourceItensDaVd$.data[index] = data;
-              this.tableVendas.renderRows();
-            });
-        } else {
-          this.itensDaVdService.createVd(result)
-            .subscribe((data: IProduto) => {
-              this.tbSourceItensDaVd$.data.push(result);
-              this.tableVendas.renderRows();
-            });
-        }
-      }
-    });*/
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.tbSourceVd$.data.length;
     var compare = numSelected === numRows;
-    console.log('Comparater IsAllSelected', numSelected )
     return numSelected === numRows;
   }
 
@@ -189,58 +180,23 @@ export class VendaComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.idVenda + 1}`;
   }
 
-
-  rowClickHandler(element: any){
-
-   console.log(' ELEMENT ',element);
-   console.log('element.isExpanded ',element.isExpanded);
-    console.log(' count', this.count);
-    console.log(' $IsExpanded', this.$isExpanded);
-    if(this.count === 1){
-      element.isExpanded = false;
-      alert('Feche a linha anterior')
+   rowClickHandler(element: any){
+    if(this.count === 0 && !this.$isExpanded){
+      this.listarItensVdPorCod(element.idVenda);
     }
+     this.$isExpanded = element.valueOf().isExpanded;
     for (var i = 0; i < 2; i++) {
-      console.log('valor i', i);
       this.count += i;
-      console.log('COUNT', this.count);
-      if (this.count === 0 ) {
-        console.log('element.isExpanded ', element.isExpanded);
-        this.tbSourceItensDaVd$.data = element.itensVd;
-        console.log('COUNT', this.count);
-      }
     }
-        // element.isExpanded = this.$isExpanded ;
-      console.log(' element.isExpanded', element.isExpanded);
-
+    var tot = 0;
+    for (let i = 0; i < element?.itensVd.length ; i++) {
+      console.log('Valor parc' , element?.itensVd[i].valor_parcial)
+      tot += element?.itensVd[i].valor_parcial;
+    }
   }
 
   toggleRow(element: any) {
-
-  //  console.log('element before ==> ', element.isExpanded , 'ID vd', element);
-   // console.log('ID da venda selecionada ==> ', element.idVenda.toString());
-
-    /*  this.itensDaVdService.listarItensVdPorCodVenda(element.idVenda.toString())
-        .pipe(catchError(error => {
-          this.onError('Erro ao buscar Itens da Venda!')
-          return of([])
-        }))
-        .subscribe((data: iItensVd[]) => {
-       //   console.log('ItensVD ==> ', data);
-          this.tbSourceItensDaVd$.data = data;
-          var soma = 0;
-          for (var i = 0; i < data.length; i++) {
-            soma += data.map(i => i.valor_parcial)[i];
-          }*/
-       //   console.log('ItensVD somados', soma);
-     /*     console.log('element half', element.isExpanded);
-          if (soma > 0 && element.isExpanded < 2) {
-           for(var j = 0; j < 2; j++){
-             element.isExpanded += j;
-           }
-            console.log('element out', element.isExpanded);
-          }*/
-       //buscando o menor valor
+      /** buscando o menor valor*/
           var matriz = [11, 20, 3, 4, 15, 9, 42, 18, 31];
           var smallest = matriz[0];
           for(var i=1; i<matriz.length ; i++){
@@ -249,21 +205,9 @@ export class VendaComponent implements OnInit {
             }else {
               smallest = matriz[i];
             }
-        //    console.log('Menores',smallest);
           }
-          // busca mais simplificado
+          /** busca mais simplificado */
           var small = matriz.sort((a, b) => a - b);
-       //   console.log('Menor RESULT',small[0]);
-       //   console.log('RESULT ordenado',small);
-       //   console.log('Maior RESULT',small[matriz.length - 1]);
-
-       // });
-
-
   }
-
-
-
-
 
 }

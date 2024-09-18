@@ -19,7 +19,7 @@ export class VendasService {
       .pipe(
         first(),
         delay(3000),
-        tap(sales => console.log(sales))
+        //tap(sales => console.log(sales))
       );
   }
 
