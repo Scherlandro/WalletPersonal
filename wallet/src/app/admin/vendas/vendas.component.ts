@@ -5,7 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
-import {of, timeout} from "rxjs";
+import {of} from "rxjs";
 import { catchError } from "rxjs/operators";
 import { iVendas } from 'src/app/interfaces/vendas';
 import { iItensVd } from "../../interfaces/itens-vd";
@@ -38,7 +38,6 @@ export class VendaComponent implements OnInit {
   displayedColumnsVd: string[] = ['nome_cliente','dt_venda','total_geral','opicao'];
   tbSourceVd$: MatTableDataSource<iVendas>;
   displayedColumns: string[] = ['codigo','descricao','preco','qtd','soma','data','imagem','opicoes'];
-  //tbSourceItensDaVd$ :MatTableDataSource<iItensVd>;
   tbSourceItensDaVd$ :any;
   vendaControl = new FormControl();
   produtControl = new FormControl();
